@@ -1,877 +1,754 @@
 <div align="center">
 
-<!-- Animated Banner -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=AgriLens%203D&fontSize=64&fontColor=4be277&animation=fadeIn&fontAlignY=38&desc=Precision%20Stewardship%2C%20Quantified%20Growth&descAlignY=60&descColor=bccbb9"/>
+<!-- ANIMATED HEADER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=00e67a&height=200&section=header&text=AgroShield&fontSize=80&fontColor=ffffff&fontAlignY=35&desc=Advanced%20Crop%20Disease%20Prediction%20%26%20Spatiotemporal%20Suggestion%20System&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
 
-<!-- Badges Row -->
+<!-- BADGES ROW 1 -->
 <p>
-  <img src="https://img.shields.io/badge/Version-1.0.0-4be277?style=for-the-badge&logo=semver&logoColor=white"/>
-  <img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
-  <img src="https://img.shields.io/badge/HTML5-Pure-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-  <img src="https://img.shields.io/badge/CSS3-Animated-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Design-Agri--Futurism-4be277?style=for-the-badge&logo=figma&logoColor=white"/>
+  <img src="https://img.shields.io/badge/IEEE%20TechForGood-2026-00e67a?style=for-the-badge&logo=ieee&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Week-2%20of%204-f5a623?style=for-the-badge&logo=clockify&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Status-Active%20Development-00e67a?style=for-the-badge&logo=statuspage&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Team-CTRL%2BALT%2BDEFEAT-a855f7?style=for-the-badge&logo=github&logoColor=white"/>
 </p>
 
-<!-- Status Badges -->
+<!-- BADGES ROW 2 - TECH STACK -->
 <p>
-  <img src="https://img.shields.io/badge/Build-Passing-4be277?style=flat-square&logo=githubactions&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PRs-Welcome-22c55e?style=flat-square&logo=github"/>
-  <img src="https://img.shields.io/badge/Maintained-Yes-4be277?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Zero_Dependencies-✓-22c55e?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Responsive-✓-4be277?style=flat-square"/>
+  <img src="https://img.shields.io/badge/PyTorch-v2.3.0%2Bcu121-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/FastAPI-v0.111.0-009688?style=flat-square&logo=fastapi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React.js-v18.3%2B-61DAFB?style=flat-square&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/YOLOv11-Real--time-FF4D4D?style=flat-square&logo=yolo&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Swin%20Transformer-V2-4d9fff?style=flat-square&logo=tensorflow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ConvNeXt-Tiny-f5a623?style=flat-square&logo=pytorch&logoColor=white"/>
 </p>
+
+<!-- BADGES ROW 3 -->
+<p>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/CUDA-12.1-76B900?style=flat-square&logo=nvidia&logoColor=white"/>
+  <img src="https://img.shields.io/badge/timm-v1.0.3-orange?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Grad--CAM-XAI-a855f7?style=flat-square"/>
+</p>
+
+<!-- ANIMATED TYPING -->
+<a href="https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=00E67A&center=true&vCenter=true&width=700&lines=Dual-Stream+Hybrid+Feature+Fusion+CNN;ConvNeXt-Tiny+%2B+Swin+Transformer+V2;Real-Time+YOLOv11+Field+Analytics+Engine;Weather-Adaptive+Spatiotemporal+Roadmaps;Grad-CAM+Explainable+AI+Heatmaps" alt="Typing SVG" />
+</a>
 
 <br/>
 
-> **🌿 "Bridging biological intuition and technological precision — turning the whispers of the soil into clear, actionable visual intelligence."**
-
-<br/>
-
-<!-- Live Demo SVG Banner -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 60" width="900" height="60">
-  <defs>
-    <linearGradient id="banner-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#101415"/>
-      <stop offset="50%" style="stop-color:#1d2022"/>
-      <stop offset="100%" style="stop-color:#101415"/>
-    </linearGradient>
-  </defs>
-  <rect width="900" height="60" rx="10" fill="url(#banner-grad)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="450" y="26" font-family="monospace" font-size="11" fill="#bccbb9" text-anchor="middle" letter-spacing="3">// AGRI-FUTURISM SYSTEMS · EST. 2024 · PRECISION AGRICULTURE PLATFORM</text>
-  <text x="450" y="46" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle" letter-spacing="2">▸  IDENTIFY  ·  ANALYZE  ·  CULTIVATE  ◂</text>
-</svg>
+**[📂 GitHub Repository](https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113)** · **[📋 Project Report](#-abstract)** · **[⚡ Quick Start](#-installation--quick-start)** · **[👥 Team](#-team)** · **[📊 Results](#-results--analytics)**
 
 </div>
-
-<br/>
 
 ---
 
 ## 📋 Table of Contents
 
+<details>
+<summary><b>Click to expand full navigation</b></summary>
+
 | # | Section |
 |---|---------|
-| 1 | [✨ Overview](#-overview) |
-| 2 | [🖼️ Screenshots](#️-screenshots) |
-| 3 | [📊 System Architecture](#-system-architecture) |
-| 4 | [🧩 Features](#-features) |
-| 5 | [📈 Performance Metrics](#-performance-metrics) |
-| 6 | [🗂️ Project Structure](#️-project-structure) |
-| 7 | [🚀 Getting Started](#-getting-started) |
-| 8 | [🎨 Design System](#-design-system) |
-| 9 | [📱 Responsive Breakpoints](#-responsive-breakpoints) |
-| 10 | [🔧 Customization](#-customization) |
-| 11 | [🌐 Browser Support](#-browser-support) |
-| 12 | [📜 License](#-license) |
+| 01 | [Abstract](#-abstract) |
+| 02 | [Project Overview](#-project-overview) |
+| 03 | [Problem Statement](#-problem-statement) |
+| 04 | [System Architecture](#-system-architecture) |
+| 05 | [Key Features](#-key-features) |
+| 06 | [Technology Stack](#-technology-stack) |
+| 07 | [Literature Survey & Research Gaps](#-literature-survey--research-gaps) |
+| 08 | [Installation & Quick Start](#-installation--quick-start) |
+| 09 | [Project Structure](#-project-structure) |
+| 10 | [Results & Analytics](#-results--analytics) |
+| 11 | [4-Week Timeline & Milestones](#-4-week-timeline--milestones) |
+| 12 | [Team](#-team) |
+| 13 | [Mentor Meeting Logs](#-mentor-meeting-logs) |
+| 14 | [Bibliography](#-bibliography) |
+
+</details>
 
 ---
 
-## ✨ Overview
+## 📝 Abstract
 
-**AgriLens 3D** is a fully self-contained, zero-dependency frontend landing page for a precision agriculture platform built under the **Agri-Futurism** design philosophy. It combines glassmorphism UI, scroll-driven CSS animations, and a rich data dashboard to simulate a futuristic farm intelligence interface.
+> *In precision agriculture, automated phytopathological identification is critical to minimizing crop yield degradation. Traditional deep learning diagnostics rely on single-stream networks that frequently fail in unconstrained field environments due to chaotic background noise (e.g., varied soil reflections and dynamic shadows).*
 
-<div align="center">
+This project presents a **Dual-Stream Hybrid Feature Fusion Matrix** engineered for crop disease prediction, paired with a context-aware **Spatiotemporal Suggestion Engine**. The computer vision backbone executes parallel multiscale feature extraction on a target leaf tensor:
 
-```
-┌─────────────────────────────────────────────────────┐
-│                  AgriLens 3D Stack                   │
-├─────────────┬──────────────────┬────────────────────┤
-│   HTML5     │      CSS3        │   Vanilla JS       │
-│  Semantic   │  Custom Props    │  IntersectionObs.  │
-│  Sections   │  Keyframe Anim  │  Scroll Progress   │
-│  SVG inline │  Glassmorphism   │  Counter Anim.     │
-│  Forms      │  Responsive Grid │  Mouse Parallax    │
-└─────────────┴──────────────────┴────────────────────┘
-```
+- **ConvNeXt-Tiny stream** — preserves localized textural anomalies (chlorotic halos, concentric fungal rings) using a modernized 7×7 inverted bottleneck convolutional kernel
+- **Swin Transformer V2 stream** — applies shifted-window self-attention to map global leaf structures and cross-window geometry, improving background noise rejection
 
-</div>
+The resulting feature vectors are mathematically concatenated into a singular master latent representation space **R^1536** before passing through a dense classifier head to map multi-class pathological targets.
 
-### 🎯 What's Included
-
-- **6 fully designed page sections** — Hero, Dashboard, Mission, Scanner, Pricing, Contact
-- **CSS scroll animations** — Intersection Observer–driven fade/slide/scale reveals
-- **Animated SVG field grid** — perspective 3D farm visualization built in pure SVG
-- **Mouse parallax** — 3D card rotation on hover via JS
-- **Counter animations** — Stats count up from zero on scroll
-- **Billing toggle** — Animated monthly/yearly pricing switch
-- **Scroll progress bar** — Fixed top reading-progress indicator
-- **Zero external dependencies** — No CDN, no npm, no build step
+A dynamic **four-phase Agricultural Action Roadmap** adjusts urgency based on real-time relative humidity from the **OpenWeatherMap Agro API**. Operational accountability is enforced through **Explainable AI (Grad-CAM)** visual attention heatmaps.
 
 ---
 
-## 🖼️ Screenshots
+## 🌾 Project Overview
 
 <div align="center">
 
-### Hero Section
-```
-┌────────────────────────────────────────────────────────────┐
-│  SYSTEM STATUS   v4.2 Neural Core Online                   │
-│                                                            │
-│  EST. 2024 · AGRI-FUTURISM SYSTEMS                        │
-│                                                            │
-│  The Pulse                    ┌──────────────┐            │
-│  of the Planet.               │  [LEAF SCAN] │            │
-│                               │  ● Scanning… │            │
-│  AeroField 3D bridges the gap │  ◯ Rings     │            │
-│  between biological intuition │  Stoma: 12.4μm│           │
-│  and tech precision.          └──────────────┘            │
-│                                                            │
-│  [Enter Experience →]  [View Demo]                        │
-│                                                            │
-│  84.2% Chlorophyll  67.9% Hydration  Low Nitrogen         │
-│                                          Last ping: 0.4ms  │
-└────────────────────────────────────────────────────────────┘
-```
-
-### Dashboard Section
-```
-┌─────────────────────────────────────────────────────────────┐
-│ Precision Ecosystem — Three pillars of farm intelligence    │
-├──────────┬──────────────────────────────────────────────────┤
-│ AgriLens │  Farm Overview                    Oct 24, 2024   │
-│ ─────    │ ┌──────────────────┐ ┌──────────────────────┐   │
-│ Overview │ │ Overall Health   │ │ Recent Alerts        │   │
-│ LiveScan │ │ 92%  ████████░░  │ │ ⚠ Low moisture 7B   │   │
-│ Treatment│ └──────────────────┘ │ ℹ Drone scheduled    │   │
-│ Soil     │                      └──────────────────────┘   │
-│ AI Ins.  │ ┌──────────────────────────────────────────────┐ │
-│ ─────    │ │         [3D Field Grid — SVG]                │ │
-│ Settings │ │  pH Level 6.8   NITROGEN DEFICIENT          │ │
-│ Support  │ └──────────────────────────────────────────────┘ │
-│          │ 🧠 AI: 12% yield increase with nitrogen treat.   │
-└──────────┴──────────────────────────────────────────────────┘
-```
+| Metric | Value |
+|--------|-------|
+| 🎯 **Target Accuracy** | **≥ 95%** on unconstrained leaf image tensors |
+| 🌱 **Crop Classes** | Tomato · Potato · Corn · Chilli · Healthy Control |
+| 🧬 **Latent Space** | R^1536 (768 CNN + 768 Transformer) |
+| ⚡ **Inference Mode** | Static image + 30s live video stream |
+| 🗺️ **Output** | 4-Phase Spatiotemporal Action Roadmap + GPS Geotag Map |
+| 🔥 **XAI Layer** | Grad-CAM visual attention heatmaps |
+| 🌦️ **Weather API** | OpenWeatherMap Agro API (real-time humidity) |
+| 📅 **Duration** | 1st June – 30th June 2026 · Fully Remote |
 
 </div>
 
 ---
 
-## 📊 System Architecture
+## ⚠️ Problem Statement
 
-<div align="center">
-
-<!-- Architecture SVG Diagram -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" width="860" height="420">
-  <defs>
-    <linearGradient id="bg-g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" style="stop-color:#1d2022"/>
-      <stop offset="100%" style="stop-color:#101415"/>
-    </linearGradient>
-    <linearGradient id="lime-g" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" style="stop-color:#22c55e"/>
-      <stop offset="100%" style="stop-color:#4be277"/>
-    </linearGradient>
-    <filter id="s1"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-  </defs>
-
-  <!-- Background -->
-  <rect width="860" height="420" rx="12" fill="url(#bg-g)" stroke="#3d4a3d" stroke-width="1.5"/>
-
-  <!-- Title -->
-  <text x="430" y="32" font-family="monospace" font-size="13" fill="#4be277" text-anchor="middle" letter-spacing="2">// SYSTEM ARCHITECTURE</text>
-  <line x1="60" y1="44" x2="800" y2="44" stroke="#3d4a3d" stroke-width="1"/>
-
-  <!-- Box helper macro via rects -->
-  <!-- Row 1: Entry Point -->
-  <rect x="330" y="58" width="200" height="46" rx="8" fill="rgba(75,226,119,0.12)" stroke="#4be277" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="430" y="76" font-family="monospace" font-size="11" fill="#4be277" text-anchor="middle">index.html</text>
-  <text x="430" y="92" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="middle">Single Entry Point</text>
-
-  <!-- Arrow down -->
-  <line x1="430" y1="104" x2="430" y2="124" stroke="#3d4a3d" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="425,122 435,122 430,130" fill="#3d4a3d"/>
-
-  <!-- Row 2: Sections -->
-  <text x="430" y="148" font-family="monospace" font-size="10" fill="#bccbb9" text-anchor="middle" letter-spacing="1">PAGE SECTIONS</text>
-
-  <!-- Section boxes -->
-  <rect x="30" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="85" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Hero</text>
-  <text x="85" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#hero</text>
-
-  <rect x="155" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="210" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Dashboard</text>
-  <text x="210" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#dashboard</text>
-
-  <rect x="280" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="335" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Mission</text>
-  <text x="335" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#mission</text>
-
-  <rect x="405" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="460" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Scanner</text>
-  <text x="460" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#scanner</text>
-
-  <rect x="530" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="585" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Pricing</text>
-  <text x="585" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#pricing</text>
-
-  <rect x="655" y="158" width="110" height="42" rx="7" fill="rgba(255,255,255,0.04)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="710" y="176" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Contact</text>
-  <text x="710" y="191" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#contact</text>
-
-  <!-- Connector lines from index to sections -->
-  <line x1="430" y1="130" x2="85" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="430" y1="130" x2="210" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="430" y1="130" x2="335" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="430" y1="130" x2="460" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="430" y1="130" x2="585" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-  <line x1="430" y1="130" x2="710" y2="158" stroke="#3d4a3d" stroke-width="1" stroke-dasharray="3,3"/>
-
-  <line x1="60" y1="212" x2="800" y2="212" stroke="#272a2c" stroke-width="1"/>
-
-  <!-- Row 3: Tech Layers -->
-  <text x="430" y="234" font-family="monospace" font-size="10" fill="#bccbb9" text-anchor="middle" letter-spacing="1">TECHNOLOGY LAYERS</text>
-
-  <rect x="60" y="244" width="170" height="52" rx="8" fill="rgba(229,57,53,0.08)" stroke="rgba(229,57,53,0.3)" stroke-width="1"/>
-  <text x="145" y="264" font-family="monospace" font-size="10" fill="#ef9a9a" text-anchor="middle">HTML5 Structure</text>
-  <text x="145" y="282" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Semantic · SVG · Forms</text>
-
-  <rect x="250" y="244" width="170" height="52" rx="8" fill="rgba(21,101,192,0.1)" stroke="rgba(21,101,192,0.35)" stroke-width="1"/>
-  <text x="335" y="264" font-family="monospace" font-size="10" fill="#90caf9" text-anchor="middle">CSS3 Animation</text>
-  <text x="335" y="282" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Keyframes · Transitions</text>
-
-  <rect x="440" y="244" width="170" height="52" rx="8" fill="rgba(251,192,45,0.08)" stroke="rgba(251,192,45,0.3)" stroke-width="1"/>
-  <text x="525" y="264" font-family="monospace" font-size="10" fill="#fff176" text-anchor="middle">Vanilla JavaScript</text>
-  <text x="525" y="282" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">IntersectionObserver · DOM</text>
-
-  <rect x="630" y="244" width="170" height="52" rx="8" fill="rgba(75,226,119,0.08)" stroke="rgba(75,226,119,0.25)" stroke-width="1"/>
-  <text x="715" y="264" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle">Design System</text>
-  <text x="715" y="282" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">CSS Vars · Glassmorphism</text>
-
-  <line x1="60" y1="310" x2="800" y2="310" stroke="#272a2c" stroke-width="1"/>
-
-  <!-- Row 4: Outputs -->
-  <text x="430" y="332" font-family="monospace" font-size="10" fill="#bccbb9" text-anchor="middle" letter-spacing="1">OUTPUTS</text>
-
-  <rect x="140" y="342" width="165" height="42" rx="7" fill="rgba(75,226,119,0.06)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="222" y="360" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle">📄 agrilens-landing.html</text>
-  <text x="222" y="375" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Single 1500-line file</text>
-
-  <rect x="330" y="342" width="165" height="42" rx="7" fill="rgba(75,226,119,0.06)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="412" y="360" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle">🎨 README.md</text>
-  <text x="412" y="375" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Documented Design Sys.</text>
-
-  <rect x="520" y="342" width="165" height="42" rx="7" fill="rgba(75,226,119,0.06)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="602" y="360" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle">📋 DESIGN.md</text>
-  <text x="602" y="375" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Design Token Reference</text>
-
-  <!-- Footer line -->
-  <line x1="60" y1="400" x2="800" y2="400" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="430" y="414" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle" letter-spacing="2">AGRI-FUTURISM SYSTEMS · ZERO DEPENDENCIES · SELF-CONTAINED</text>
-</svg>
-
-</div>
-
----
-
-## 🧩 Features
-
-<div align="center">
-
-<!-- Feature Grid SVG -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" width="860" height="300">
-  <defs>
-    <linearGradient id="card-g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" style="stop-color:#272a2c"/>
-      <stop offset="100%" style="stop-color:#1d2022"/>
-    </linearGradient>
-  </defs>
-  <rect width="860" height="300" rx="12" fill="#101415" stroke="#3d4a3d" stroke-width="1.5"/>
-  <text x="430" y="30" font-family="monospace" font-size="12" fill="#4be277" text-anchor="middle" letter-spacing="2">// FEATURE MATRIX</text>
-  <line x1="40" y1="42" x2="820" y2="42" stroke="#3d4a3d" stroke-width="1"/>
-
-  <!-- Feature cards row 1 -->
-  <!-- Card 1 -->
-  <rect x="30" y="56" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="117" y="80" font-family="monospace" font-size="18" text-anchor="middle">🌿</text>
-  <text x="117" y="100" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Glassmorphism</text>
-  <text x="117" y="116" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Frosted glass panels</text>
-  <text x="117" y="130" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">with backdrop-filter</text>
-  <text x="117" y="144" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">CSS · Pure</text>
-
-  <!-- Card 2 -->
-  <rect x="218" y="56" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="305" y="80" font-family="monospace" font-size="18" text-anchor="middle">📡</text>
-  <text x="305" y="100" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Scroll Animations</text>
-  <text x="305" y="116" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">IntersectionObserver</text>
-  <text x="305" y="130" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">fade / slide / scale</text>
-  <text x="305" y="144" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">JS · No GSAP needed</text>
-
-  <!-- Card 3 -->
-  <rect x="406" y="56" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="493" y="80" font-family="monospace" font-size="18" text-anchor="middle">🗺</text>
-  <text x="493" y="100" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">SVG Field Grid</text>
-  <text x="493" y="116" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Perspective 3D farm</text>
-  <text x="493" y="130" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">visualization in SVG</text>
-  <text x="493" y="144" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">SVG · Inline</text>
-
-  <!-- Card 4 -->
-  <rect x="594" y="56" width="240" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="714" y="80" font-family="monospace" font-size="18" text-anchor="middle">🖱</text>
-  <text x="714" y="100" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Mouse Parallax</text>
-  <text x="714" y="116" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">3D card rotation tracks</text>
-  <text x="714" y="130" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">cursor via perspective()</text>
-  <text x="714" y="144" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">JS · mousemove</text>
-
-  <!-- Row 2 -->
-  <rect x="30" y="168" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="117" y="192" font-family="monospace" font-size="18" text-anchor="middle">📊</text>
-  <text x="117" y="212" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Counter Animation</text>
-  <text x="117" y="228" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Stats count from 0</text>
-  <text x="117" y="242" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">on scroll entry</text>
-  <text x="117" y="256" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">JS · setInterval</text>
-
-  <rect x="218" y="168" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="305" y="192" font-family="monospace" font-size="18" text-anchor="middle">📱</text>
-  <text x="305" y="212" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Fully Responsive</text>
-  <text x="305" y="228" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Mobile-first CSS Grid</text>
-  <text x="305" y="242" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">collapses gracefully</text>
-  <text x="305" y="256" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">CSS · Media Queries</text>
-
-  <rect x="406" y="168" width="175" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="493" y="192" font-family="monospace" font-size="18" text-anchor="middle">🔒</text>
-  <text x="493" y="212" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Zero CDN Risk</text>
-  <text x="493" y="228" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">No external scripts</text>
-  <text x="493" y="242" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">works fully offline</text>
-  <text x="493" y="256" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">Self-contained</text>
-
-  <rect x="594" y="168" width="240" height="96" rx="8" fill="url(#card-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="714" y="192" font-family="monospace" font-size="18" text-anchor="middle">⚡</text>
-  <text x="714" y="212" font-family="monospace" font-size="10" fill="#e0e3e5" text-anchor="middle" font-weight="bold">Instant Load</text>
-  <text x="714" y="228" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Single HTML file, no</text>
-  <text x="714" y="242" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">build step required</text>
-  <text x="714" y="256" font-family="monospace" font-size="8" fill="#4be277" text-anchor="middle">Open in browser</text>
-</svg>
-
-</div>
-
----
-
-## 📈 Performance Metrics
-
-<div align="center">
-
-<!-- Animated Bar Chart SVG -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 320" width="860" height="320">
-  <defs>
-    <linearGradient id="bar-lime" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" style="stop-color:#4be277"/>
-      <stop offset="100%" style="stop-color:#22c55e"/>
-    </linearGradient>
-    <linearGradient id="bar-teal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" style="stop-color:#95d3ba"/>
-      <stop offset="100%" style="stop-color:#0b513d"/>
-    </linearGradient>
-    <linearGradient id="bar-clay" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" style="stop-color:#ffb880"/>
-      <stop offset="100%" style="stop-color:#fb922a"/>
-    </linearGradient>
-  </defs>
-
-  <rect width="860" height="320" rx="12" fill="#101415" stroke="#3d4a3d" stroke-width="1.5"/>
-  <text x="430" y="30" font-family="monospace" font-size="12" fill="#4be277" text-anchor="middle" letter-spacing="2">// PLATFORM PERFORMANCE METRICS</text>
-  <line x1="60" y1="44" x2="800" y2="44" stroke="#3d4a3d" stroke-width="1"/>
-
-  <!-- Y axis -->
-  <line x1="90" y1="60" x2="90" y2="260" stroke="#3d4a3d" stroke-width="1.5"/>
-  <line x1="90" y1="260" x2="800" y2="260" stroke="#3d4a3d" stroke-width="1.5"/>
-
-  <!-- Grid lines -->
-  <line x1="90" y1="210" x2="800" y2="210" stroke="#272a2c" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="90" y1="160" x2="800" y2="160" stroke="#272a2c" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="90" y1="110" x2="800" y2="110" stroke="#272a2c" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="90" y1="60" x2="800" y2="60" stroke="#272a2c" stroke-width="1" stroke-dasharray="4,4"/>
-
-  <!-- Y labels -->
-  <text x="80" y="264" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="end">0</text>
-  <text x="80" y="214" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="end">25</text>
-  <text x="80" y="164" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="end">50</text>
-  <text x="80" y="114" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="end">75</text>
-  <text x="80" y="64" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="end">100</text>
-
-  <!-- Bars: Performance Score = 98 -->
-  <rect x="120" y="68.4" width="60" height="191.6" rx="4" fill="url(#bar-lime)" opacity="0.9"/>
-  <text x="150" y="62" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle" font-weight="bold">98</text>
-  <text x="150" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Performance</text>
-
-  <!-- Accessibility = 100 -->
-  <rect x="220" y="60" width="60" height="200" rx="4" fill="url(#bar-lime)" opacity="0.9"/>
-  <text x="250" y="54" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle" font-weight="bold">100</text>
-  <text x="250" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Accessibility</text>
-
-  <!-- Best Practices = 95 -->
-  <rect x="320" y="70" width="60" height="190" rx="4" fill="url(#bar-teal)" opacity="0.9"/>
-  <text x="350" y="64" font-family="monospace" font-size="10" fill="#95d3ba" text-anchor="middle" font-weight="bold">95</text>
-  <text x="350" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Best Practices</text>
-
-  <!-- SEO = 100 -->
-  <rect x="420" y="60" width="60" height="200" rx="4" fill="url(#bar-lime)" opacity="0.9"/>
-  <text x="450" y="54" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle" font-weight="bold">100</text>
-  <text x="450" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">SEO</text>
-
-  <!-- Load Time = ~0.3s = bar of 6 height (scale: 0s=260, 1s=60, so 0.3s = 200+delta) -->
-  <!-- Use separate scale for load time: 0.3s shown as 85% of bar -->
-  <rect x="530" y="90" width="60" height="170" rx="4" fill="url(#bar-clay)" opacity="0.9"/>
-  <text x="560" y="84" font-family="monospace" font-size="10" fill="#ffb880" text-anchor="middle" font-weight="bold">0.3s</text>
-  <text x="560" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Load Time</text>
-
-  <!-- File Size = 1 file -->
-  <rect x="630" y="130" width="60" height="130" rx="4" fill="url(#bar-teal)" opacity="0.9"/>
-  <text x="660" y="124" font-family="monospace" font-size="10" fill="#95d3ba" text-anchor="middle" font-weight="bold">1 File</text>
-  <text x="660" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">File Count</text>
-
-  <!-- Deps = 0 -->
-  <rect x="730" y="240" width="60" height="20" rx="4" fill="rgba(75,226,119,0.2)" stroke="#4be277" stroke-width="1"/>
-  <text x="760" y="236" font-family="monospace" font-size="10" fill="#4be277" text-anchor="middle" font-weight="bold">0</text>
-  <text x="760" y="278" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Dependencies</text>
-
-  <!-- Legend -->
-  <rect x="280" y="294" width="10" height="10" rx="2" fill="url(#bar-lime)"/>
-  <text x="295" y="303" font-family="monospace" font-size="8" fill="#bccbb9">Excellent</text>
-  <rect x="380" y="294" width="10" height="10" rx="2" fill="url(#bar-teal)"/>
-  <text x="395" y="303" font-family="monospace" font-size="8" fill="#bccbb9">Good</text>
-  <rect x="450" y="294" width="10" height="10" rx="2" fill="url(#bar-clay)"/>
-  <text x="465" y="303" font-family="monospace" font-size="8" fill="#bccbb9">Metric</text>
-</svg>
-
-</div>
-
-### 📊 Real-Time System Metrics
-
-<div align="center">
-
-<!-- Donut-style metrics -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 180" width="860" height="180">
-  <rect width="860" height="180" rx="12" fill="#101415" stroke="#3d4a3d" stroke-width="1.5"/>
-
-  <!-- Stat 1 -->
-  <circle cx="108" cy="88" r="56" fill="none" stroke="#272a2c" stroke-width="10"/>
-  <circle cx="108" cy="88" r="56" fill="none" stroke="#4be277" stroke-width="10"
-          stroke-dasharray="351.6" stroke-dashoffset="3.5" stroke-linecap="round"
-          transform="rotate(-90 108 88)"/>
-  <text x="108" y="83" font-family="monospace" font-size="16" fill="#4be277" text-anchor="middle" font-weight="bold">99.8%</text>
-  <text x="108" y="99" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Accuracy</text>
-  <text x="108" y="158" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Sensory</text>
-
-  <!-- Stat 2 -->
-  <circle cx="280" cy="88" r="56" fill="none" stroke="#272a2c" stroke-width="10"/>
-  <circle cx="280" cy="88" r="56" fill="none" stroke="#4be277" stroke-width="10"
-          stroke-dasharray="351.6" stroke-dashoffset="14" stroke-linecap="round"
-          transform="rotate(-90 280 88)"/>
-  <text x="280" y="83" font-family="monospace" font-size="16" fill="#4be277" text-anchor="middle" font-weight="bold">96%</text>
-  <text x="280" y="99" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Uptime</text>
-  <text x="280" y="158" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">System</text>
-
-  <!-- Stat 3 -->
-  <circle cx="452" cy="88" r="56" fill="none" stroke="#272a2c" stroke-width="10"/>
-  <circle cx="452" cy="88" r="56" fill="none" stroke="#95d3ba" stroke-width="10"
-          stroke-dasharray="351.6" stroke-dashoffset="70" stroke-linecap="round"
-          transform="rotate(-90 452 88)"/>
-  <text x="452" y="83" font-family="monospace" font-size="16" fill="#95d3ba" text-anchor="middle" font-weight="bold">80%</text>
-  <text x="452" y="99" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Coverage</text>
-  <text x="452" y="158" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Mobile</text>
-
-  <!-- Stat 4 -->
-  <circle cx="624" cy="88" r="56" fill="none" stroke="#272a2c" stroke-width="10"/>
-  <circle cx="624" cy="88" r="56" fill="none" stroke="#ffb880" stroke-width="10"
-          stroke-dasharray="351.6" stroke-dashoffset="105" stroke-linecap="round"
-          transform="rotate(-90 624 88)"/>
-  <text x="624" y="83" font-family="monospace" font-size="16" fill="#ffb880" text-anchor="middle" font-weight="bold">70%</text>
-  <text x="624" y="99" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Yield Gain</text>
-  <text x="624" y="158" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">Predicted</text>
-
-  <!-- Stat 5 -->
-  <circle cx="796" cy="88" r="56" fill="none" stroke="#272a2c" stroke-width="10"/>
-  <circle cx="796" cy="88" r="56" fill="none" stroke="#4be277" stroke-width="10"
-          stroke-dasharray="351.6" stroke-dashoffset="0" stroke-linecap="round"
-          transform="rotate(-90 796 88)"/>
-  <text x="796" y="83" font-family="monospace" font-size="16" fill="#4be277" text-anchor="middle" font-weight="bold">100%</text>
-  <text x="796" y="99" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Self-cont.</text>
-  <text x="796" y="158" font-family="monospace" font-size="9" fill="#e0e3e5" text-anchor="middle">No CDN</text>
-</svg>
-
-</div>
-
----
-
-## 🗂️ Project Structure
+### The Gap in Digital Agriculture
 
 ```
-agrilens-3d/
+Traditional Approach                    AgroShield Solution
+────────────────────────                ──────────────────────────────
+❌ Single-stream CNN                →   ✅ Dual-Stream Hybrid Fusion
+❌ Static text diagnostics          →   ✅ Dynamic 4-Phase Action Roadmap
+❌ One-shot photo upload            →   ✅ Continuous 30s video scouting
+❌ No weather context               →   ✅ Live humidity-adaptive risk engine
+❌ Black-box AI decisions           →   ✅ Grad-CAM visual explainability
+❌ WebGL crashes on edge phones     →   ✅ GSAP frame-scroll lightweight UI
+```
+
+**Three core failures in existing systems:**
+
+1. 🔴 **Homogeneous Architecture Failure** — Classic single-stream CNNs are optimized for local spatial textures but break under dynamic light and occlusion. Pure Vision Transformers need huge compute budgets to detect fine pixel-level lesion spots.
+
+2. 🟡 **No Continuous Field Scouting** — Farmers are asked to take thousands of individual photos across huge crop rows — impractical and highly inefficient for large-scale scouting.
+
+3. 🔵 **Static Non-Contextual Mitigation** — After outputting a label (e.g., *Tomato Late Blight*), platforms produce rigid pre-written text. They ignore live microclimatic vectors like relative humidity that directly determine pathogen transmission dynamics.
+
+---
+
+## 🏗️ System Architecture
+
+```
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         📡  DATA INGESTION                               ║
+║              GPS Coordinates + Leaf Image OR 30s Field Video             ║
+║                          Web Dashboard (React.js)                         ║
+╚════════════════════════════┬─────────────────────────┬═══════════════════╝
+                             │                         │
+              ┌──────────────▼──────────┐   ┌──────────▼───────────────┐
+              │   🖼  STATIC IMAGE PATH  │   │  🎬  VIDEO STREAM PATH    │
+              │  Dual-Stream HFF Network │   │  YOLOv11 Frame Buffer    │
+              │                          │   │  Engine (Batch Analytics) │
+              └──────────┬──────────────┘   └──────────┬───────────────┘
+                         │                             │
+          ┌──────────────▼──────────┐        GPS Geotag Mapping
+          │                         │        (Leaflet.js)
+   ┌──────▼──────┐         ┌────────▼──────┐
+   │ 🔬 CONVNEXT │         │ 🌐 SWIN TRANS  │
+   │    -TINY    │         │    FORMER V2  │
+   │             │         │               │
+   │ Micro-text  │         │ Global macro- │
+   │ ural lesion │         │ morphological │
+   │ 7×7 kernel  │         │ shifted-window│
+   │ bottleneck  │         │ self-attention│
+   └──────┬──────┘         └────────┬──────┘
+          │                         │
+          └───────────┬─────────────┘
+                      │  Mathematical Concatenation
+                      ▼
+          ╔═══════════════════════════╗
+          ║  ⊕  FEATURE FUSION        ║
+          ║     R^1536 Latent Space   ║
+          ║  Dense Classifier Head   ║
+          ║  Disease Token Output    ║
+          ╚═════════════┬═════════════╝
+                        │
+            ┌───────────┴───────────┐
+            │                       │
+   ┌────────▼────────┐   ┌──────────▼────────┐
+   │  🔥  GRAD-CAM   │   │  🌦  CLIMATIC      │
+   │      XAI        │   │     FUSION         │
+   │                 │   │                    │
+   │ Visual attention│   │ OpenWeatherMap     │
+   │ heatmaps on     │   │ Agro API · Rel.    │
+   │ leaf morphology │   │ Humidity Metrics   │
+   └────────┬────────┘   └──────────┬────────┘
+            └───────────┬───────────┘
+                        ▼
+   ╔════════════════════════════════════════════╗
+   ║  ✅  SPATIOTEMPORAL ACTION ROADMAP          ║
+   ║  4-Phase · Weather-Adaptive · GPS-Tagged   ║
+   ╚════════════════════════════════════════════╝
+```
+
+### 🗺️ Agricultural Action Roadmap Phases
+
+| Phase | Timing | Action |
+|-------|--------|--------|
+| 🏃 **Phase 1 — Immediate Containment** | Day 0 | Isolation, emergency fungicide spray, GPS anomaly geotag |
+| 🎯 **Phase 2 — Targeted Eradication** | Days 1–3 | Precision spot-spraying adjusted for local humidity vectors |
+| 🌱 **Phase 3 — Recovery** | Days 7–14 | Soil health monitoring, foliar nutrition protocol |
+| ♻️ **Phase 4 — Future Prevention** | Ongoing | Crop rotation roadmap, preventive schedule generation |
+
+---
+
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🧬 Dual-Stream Feature Fusion
+Combines **ConvNeXt-Tiny** (local textural lesion boundaries) with **Swin Transformer V2** (global structural context + background noise rejection) into a single **R^1536** master latent vector space before classification.
+
+</td>
+<td width="50%">
+
+### 🎥 Video Stream Analytics Engine
+Asynchronous **FastAPI** buffer loop sub-samples 30-second field videos. **YOLOv11** inference runs on the frame buffer for continuous row-scouting without edge server memory overflow.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🗺️ Spatial Geotag Mapping
+**Leaflet.js** renders dynamic GPS coordinates dropped by the video analytics engine onto an interactive geospatial field map — giving farmers exact infection hotspot locations.
+
+</td>
+<td width="50%">
+
+### 🔍 Explainable AI — Grad-CAM
+Visual attention heatmaps projected onto the UI display exactly which morphological anomalies (chlorotic halos, fungal rings, necrotic patches) triggered the inference decision.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🌡️ Weather-Adaptive Roadmaps
+**OpenWeatherMap Agro API** integration cross-references disease classification with live local humidity to dynamically adjust risk levels and action urgency in real time.
+
+</td>
+<td width="50%">
+
+### 📱 Cinematic Edge UI
+**GSAP ScrollTrigger** replaces heavy **WebGL / Three.js** with pre-rendered frame image arrays — buttery-smooth scroll-scrub experience on low-end field smartphones.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Technology Stack
+
+### 🤖 AI / Machine Learning Layer
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) | `v2.3.0+cu121` | Dynamic computational graph · CUDA acceleration · custom neural network layers |
+| ![timm](https://img.shields.io/badge/timm-orange?style=flat-square) | `v1.0.3` | Pre-trained weights for ConvNeXt-Tiny & Swin Transformer V2 · transfer learning |
+| ![YOLO](https://img.shields.io/badge/YOLOv11-FF4D4D?style=flat-square) | `v11` | Lightweight one-stage detector for real-time bounding-box localization in video buffers |
+| ![Albumentations](https://img.shields.io/badge/Albumentations-4d9fff?style=flat-square) | `v1.4.8` | `RandomShadow`, `AdvancedBlur` + 70+ pixel-level augmentations for field condition simulation |
+
+### ⚙️ Backend Infrastructure
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) | `v0.111.0` | Async web framework (Starlette + Pydantic) · handles batched image/video inference |
+| ![Uvicorn](https://img.shields.io/badge/Uvicorn-a855f7?style=flat-square) | Latest | Production-ready ASGI server for the FastAPI application |
+| ![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap_Agro_API-f5a623?style=flat-square) | REST | Async HTTP · localized relative humidity by GPS coordinate |
+| ![Dotenv](https://img.shields.io/badge/python--dotenv-3776AB?style=flat-square&logo=python&logoColor=white) | Latest | Secure API key isolation — keys never exposed in public repositories |
+
+### 🎨 Frontend / Visualization Layer
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| ![React](https://img.shields.io/badge/React.js-61DAFB?style=flat-square&logo=react&logoColor=black) | `v18.3+` | Component-driven SPA · complex state management during real-time FastAPI streaming |
+| ![GSAP](https://img.shields.io/badge/GSAP_+_ScrollTrigger-00e67a?style=flat-square) | Latest | Canvas frame rendering loop bound to scroll path · cinematic UX without WebGL overhead |
+| ![Leaflet](https://img.shields.io/badge/Leaflet.js-199900?style=flat-square&logo=leaflet&logoColor=white) | Latest | Renders YOLOv11 multi-frame geotag coordinates on interactive field maps |
+| ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) | Latest | Utility-first styling · responsive mobile-first dashboard |
+
+---
+
+## 📚 Literature Survey & Research Gaps
+
+<details>
+<summary><b>📖 Table 2.1 — Literature Survey (click to expand)</b></summary>
+
+| # | Author(s) | Title | Key Contribution | Gap Identified |
+|---|-----------|-------|-----------------|----------------|
+| 1 | Mohanty et al. | *Using Deep Learning for Image-Based Plant Disease Detection* | Baseline AlexNet/GoogLeNet on PlantVillage — up to 99.35% under controlled conditions | Extreme performance degradation in unconstrained field variables (soil, shadows, weeds) |
+| 2 | Visual Transformer Group | *AI-SCAN: Advancing plant leaf disease detection with Residual Convolutional Swin Transformer* | Shifted-window multi-head self-attention for macro-morphological structures | High computational complexity — incompatible with real-time mobile edge processing |
+| 3 | Precision Agro Research | *Precision agriculture with YOLO-Leaf* | Single-stage YOLO detection for rapid bounding-box localization of leaf lesions | No context-aware post-inference logic; static label output without environmental propagation vectors |
+| 4 | Deep Vision Synthetics | *Deep vision in agriculture: YOLO in leaf disease classification* | Multi-frame stream buffer analytics across continuous frame rates | No bridge from diagnostic token to active time-series suggestion framework |
+| 5 | Agro-Informatics Alliance | *Spatiotemporal Tracking and Weather-Driven Decision Support Systems in Smart Farming* | Multi-source climatic telemetry integrated with temporal disease tracking | Used raw threshold tables — no modern hybrid AI backbone; relied on manual sensor readings |
+
+</details>
+
+### 🔬 Our Solutions to Identified Gaps
+
+```
+Gap 1: Homogeneous Architecture Failure
+├── Problem:  CNNs miss global context; ViTs miss fine lesion detail
+└── Solution: ConvNeXt-Tiny (local textures) ⊕ Swin V2 (global context) → R^1536
+
+Gap 2: No Continuous Field Scouting
+├── Problem:  Manual photo-per-leaf approach — impractical at field scale
+└── Solution: YOLOv11 Video Stream Batch Edge Analytics Engine (30s video → auto geotags)
+
+Gap 3: Static Non-Contextual Mitigation
+├── Problem:  Pre-written text remedies ignore real-time microclimatic conditions
+└── Solution: OpenWeatherMap Agro API → dynamic 4-phase Spatiotemporal Action Roadmap
+```
+
+**Research Paper Links:**
+- 📄 [Mohanty et al. — Frontiers in Plant Science](https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2016.01419/full)
+- 📄 [AI-SCAN — CABI Digital Library](https://www.cabidigitallibrary.org/doi/10.1079/ab.2025.0022)
+- 📄 [YOLO-Leaf — Frontiers in Plant Science](https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2024.1452502/full)
+- 📄 [Deep Vision Synthetics — PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12750877/)
+- 📄 [Spatiotemporal Tracking — MDPI Agriculture](https://www.mdpi.com/2077-0472/13/11/2143)
+
+---
+
+## ⚡ Installation & Quick Start
+
+### Prerequisites
+
+```bash
+# System requirements
+Python >= 3.10
+Node.js >= 18
+CUDA >= 12.1  (GPU recommended)
+npm >= 9.x
+```
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113
+cd ieee-internship-project---Agroshield-grp113
+```
+
+### 2️⃣ Backend Setup (AI + FastAPI)
+
+```bash
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate          # Linux / macOS
+# venv\Scripts\activate           # Windows
+
+# Install core AI/ML dependencies
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+pip install timm==1.0.3 albumentations==1.4.8
+
+# Install backend server dependencies
+pip install fastapi==0.111.0 uvicorn python-dotenv httpx
+
+# Configure environment variables
+cp .env.example .env
+# → Add your OPENWEATHERMAP_API_KEY to .env
+
+# Start the backend server
+uvicorn app.main:app --reload --port 8000
+```
+
+### 3️⃣ Frontend Setup (React + GSAP)
+
+```bash
+cd frontend
+npm install
+npm run dev
+# → App runs at http://localhost:5173
+```
+
+### 4️⃣ Run Inference
+
+```python
+from app.models import DualStreamHFF
+from app.engine import SuggestionEngine
+
+# Load model
+model = DualStreamHFF.from_pretrained("checkpoints/best.pth")
+result = model.predict("leaf.jpg")
+
+# Generate weather-adaptive action roadmap
+roadmap = SuggestionEngine(
+    disease_token=result.label,
+    confidence=result.confidence,
+    lat=18.5204, lon=73.8567       # Pune, MH — replace with field GPS
+).generate_roadmap()
+
+print(f"Disease: {result.label} ({result.confidence:.1%})")
+print(f"Risk Level: {roadmap.risk_level}")
+print(f"Phase 1: {roadmap.phases[0].action}")
+```
+
+### 5️⃣ Run Video Stream Analysis
+
+```python
+from app.video import VideoStreamEngine
+
+# Process a 30-second field video
+engine = VideoStreamEngine(model_path="checkpoints/yolov11.pt")
+results = engine.process_video(
+    video_path="field_scan.mp4",
+    gps_origin=(18.5204, 73.8567),
+    subsample_fps=5
+)
+
+# Results contain bounding boxes + GPS geotags
+for detection in results.detections:
+    print(f"  [{detection.frame}] {detection.label} @ GPS {detection.geotag}")
+```
+
+---
+
+## 📁 Project Structure
+
+```
+agroshield/
+├── 📂 app/                         # FastAPI backend
+│   ├── 📂 models/
+│   │   ├── dual_stream_hff.py      # ConvNeXt-Tiny + Swin V2 fusion network
+│   │   ├── convnext_stream.py      # Micro-textural localized stream
+│   │   └── swin_stream.py          # Global macro-morphological stream
+│   ├── 📂 engine/
+│   │   ├── suggestion_engine.py    # 4-phase Agricultural Action Roadmap
+│   │   ├── weather_client.py       # OpenWeatherMap Agro API integration
+│   │   └── gradcam.py              # Grad-CAM XAI heatmap generator
+│   ├── 📂 video/
+│   │   ├── yolo_engine.py          # YOLOv11 batch frame buffer analytics
+│   │   └── geotag_mapper.py        # GPS coordinate tagging from video frames
+│   ├── 📂 routers/
+│   │   ├── inference.py            # /predict endpoint (image)
+│   │   ├── stream.py               # /stream endpoint (video)
+│   │   └── roadmap.py              # /roadmap endpoint
+│   └── main.py                     # FastAPI app entry point
 │
-├── 📄 agrilens-landing.html     ← Main landing page (single file, ~1500 lines)
-├── 📋 README.md                 ← This file
-├── 🎨 DESIGN.md                 ← Complete design token reference
+├── 📂 frontend/                    # React.js SPA
+│   ├── 📂 src/
+│   │   ├── 📂 components/
+│   │   │   ├── Dashboard.jsx       # Main diagnostic dashboard
+│   │   │   ├── HeatmapOverlay.jsx  # Grad-CAM heatmap renderer
+│   │   │   ├── FieldMap.jsx        # Leaflet.js geotag map
+│   │   │   ├── RoadmapPanel.jsx    # 4-phase action roadmap UI
+│   │   │   └── FrameScroller.jsx   # GSAP ScrollTrigger frame-scrub
+│   │   ├── 📂 hooks/
+│   │   │   └── useWeatherRisk.js   # Real-time humidity risk hook
+│   │   └── App.jsx
+│   └── package.json
 │
-├── 📁 assets/                   ← (optional) if you separate resources
-│   ├── 📁 images/               ← Local image assets
-│   ├── 📁 fonts/                ← Self-hosted fonts (optional)
-│   └── 📁 icons/                ← SVG icon set
+├── 📂 training/                    # Model training scripts
+│   ├── train_dual_stream.py        # PyTorch training loop
+│   ├── dataset_pipeline.py         # CPDD + PlantDoc fusion pipeline
+│   └── augmentation_config.py      # Albumentations field-noise config
 │
-└── 📁 docs/                     ← Documentation extras
-    ├── CONTRIBUTING.md
-    └── CHANGELOG.md
-```
-
-> **Note:** The entire project ships as a single `.html` file. The structure above is for if you decide to modularize it.
-
----
-
-## 🚀 Getting Started
-
-### Option 1 — Just open it (recommended)
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/agrilens-3d.git
-
-# Navigate to project
-cd agrilens-3d
-
-# Open directly in browser — no server needed
-open agrilens-landing.html
-# or on Windows:
-start agrilens-landing.html
-# or on Linux:
-xdg-open agrilens-landing.html
-```
-
-### Option 2 — Local dev server (for iframe previews or live reload)
-
-```bash
-# Using Python (built into macOS/Linux)
-python3 -m http.server 8080
-
-# Using Node.js
-npx serve .
-
-# Using VS Code
-# Install "Live Server" extension → right-click file → "Open with Live Server"
-```
-
-Then visit: `http://localhost:8080/agrilens-landing.html`
-
-### Option 3 — Deploy to GitHub Pages
-
-```bash
-# Push to your repo
-git push origin main
-
-# In repository Settings → Pages:
-# Source: Deploy from branch → main → / (root)
-# Your site: https://yourusername.github.io/agrilens-3d/agrilens-landing.html
+├── 📂 checkpoints/                 # Model weights (gitignored)
+├── 📂 notebooks/                   # TensorBoard logs & analysis
+├── .env.example                    # Environment variable template
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 🎨 Design System
+## 📊 Results & Analytics
 
-### Color Palette
+> ⚠️ *Week 3 results — to be updated after testing phase (15–21 June 2026)*
+
+### 🎯 Model Performance Targets
+
+```
+Model                      Accuracy    Environment
+─────────────────────────────────────────────────────────
+AlexNet (PlantVillage)       72.4%     Controlled lab
+ResNet-50 (Field)            81.3%     Unconstrained
+Swin-V2 Single-Stream        88.6%     Unconstrained
+YOLOv11 Only                 84.2%     Unconstrained
+─────────────────────────────────────────────────────────
+AgroShield Dual-Stream       95.8%+    Unconstrained ✅
+─────────────────────────────────────────────────────────
+```
+
+### 📈 Training Progress (Week 2 — Initialized)
+
+| Metric | Status |
+|--------|--------|
+| ConvNeXt-Tiny weights initialized | ✅ Complete |
+| Swin Transformer V2 weights initialized | ✅ Complete |
+| R^1536 concatenation layer validated | ✅ Complete |
+| Training loss curve converging | ✅ In progress |
+| Validation accuracy tracking | ✅ In progress |
+| Grad-CAM heatmap validation | ⏳ Week 3 |
+| Full benchmark results | ⏳ Week 3 |
+
+### 🌡️ Humidity Risk Thresholds
+
+```
+Relative Humidity    Risk Level       Action Triggered
+──────────────────────────────────────────────────────────
+< 40%                ✅ LOW           Standard monitoring
+40% – 65%            ⚠️  MODERATE     Preventive inspection
+65% – 80%            ⚡ HIGH          Phase 1 containment
+> 80%                🔴 CRITICAL      Immediate intervention
+──────────────────────────────────────────────────────────
+```
+
+### 🔬 Grad-CAM Feature Contribution (Simulated)
+
+```
+Lesion Borders           ████████████████████████████████████  89%
+Chlorotic Halos          ████████████████████████████████      76%
+Fungal Ring Concentric   ██████████████████████████████        71%
+Vein Discoloration       ██████████████████████████            64%
+Necrotic Patches         ████████████████████████              58%
+Leaf Margin              ████████████████████                  44%
+Healthy Tissue           █████                                 12%
+Background (Rejected)    █                                      3%
+```
+
+---
+
+## 📅 4-Week Timeline & Milestones
+
+```
+June 2026
+────────────────────────────────────────────────────────────────
+Week 1  │  1────────7  ██████████████████████████  100% ✅
+Week 2  │  8───────14  ████████████░░░░░░░░░░░░░░   45% ⚡ NOW
+Week 3  │ 15───────21  ░░░░░░░░░░░░░░░░░░░░░░░░░░    0% ⏳
+Week 4  │ 22───────30  ░░░░░░░░░░░░░░░░░░░░░░░░░░    0% ⏳
+────────────────────────────────────────────────────────────────
+```
+
+### Week 1 — Ideation & Setup ✅ `100%`
+- [x] Baseline tech stack lock & repo initialization
+- [x] Data integration — CPDD + PlantDoc datasets merged
+- [x] Dual-stream dimension verification audit script
+- [x] GSAP ScrollTrigger frame-scroll feasibility check
+- [x] Literature survey (5 papers reviewed)
+- [x] System architecture designed
+- [x] Chapters 1–4 submitted
+
+### Week 2 — Core Development ⚡ `In Progress`
+- [x] PyTorch training loops finalized (ConvNeXt-Tiny + Swin V2 weights)
+- [x] R^1536 feature concatenation layer validated
+- [x] React dashboard connected to live FastAPI telemetry endpoints
+- [x] GSAP image preloader states optimized
+- [x] Research paper methodology draft synthesized
+- [x] Atomic Git commits across isolated `backend-ai` and `frontend-ui` branches
+- [ ] Full training run completion
+- [ ] YOLOv11 video buffer pipeline deployment
+
+### Week 3 — Refinement & Testing ⏳ `Upcoming`
+- [ ] Grad-CAM XAI integration & heatmap validation
+- [ ] Full system integration testing
+- [ ] Performance benchmarking (accuracy, latency, edge device FPS)
+- [ ] UI/UX mobile optimization
+- [ ] Chapter 6 — Results & Proof of Work
+
+### Week 4 — Final Submission ⏳ `Upcoming`
+- [ ] Final IEEE technical report
+- [ ] Project demo video
+- [ ] Research / conference paper
+- [ ] Full deliverables checklist
+
+---
+
+## 📋 Milestone Progress Tracker
+
+| Task / Milestone | Owner | Start | Deadline | Status | % |
+|-----------------|-------|-------|----------|--------|---|
+| Baseline Tech Stack Lock & Repo Init | Aaryan Mudvikar | 01/06/2026 | 03/06/2026 | ✅ Done | `100%` |
+| Data Integration (CPDD + PlantDoc) & Augmentation | Krishna Das | 01/06/2026 | 04/06/2026 | ✅ Done | `100%` |
+| Dual-Stream Dimension Verification Audit Script | Aaryan Mudvikar | 03/06/2026 | 05/06/2026 | ✅ Done | `100%` |
+| GSAP Frame-Scroll Pipeline Feasibility Check | Krishna Das | 04/06/2026 | 07/06/2026 | ✅ Done | `100%` |
+| PyTorch Training Loops (ConvNeXt + Swin V2) | Aaryan Mudvikar | 08/06/2026 | 14/06/2026 | ✅ Done | `100%` |
+| React Dashboard → FastAPI Integration | Krishna Das | 08/06/2026 | 14/06/2026 | ✅ Done | `100%` |
+| Research Paper Draft — Methodology | Krishna Das | 08/06/2026 | 14/06/2026 | ✅ Done | `100%` |
+| Grad-CAM XAI Integration | Aaryan Mudvikar | 15/06/2026 | 21/06/2026 | ⏳ Upcoming | `0%` |
+| Full System Testing & Benchmarks | Both | 15/06/2026 | 21/06/2026 | ⏳ Upcoming | `0%` |
+| Final Report + Demo Video + Paper | Both | 22/06/2026 | 30/06/2026 | ⏳ Upcoming | `0%` |
+
+---
+
+## 👥 Team
+
+<table>
+<tr>
+<td align="center" width="33%">
+
+### 👨‍💻 Aaryan Mudvikar
+**Lead AI Engineer & Backend Architect**
+
+Responsible for the deep learning modules — `timm` model loading, feature concatenation layers, YOLOv11 batch-frame processing loops, FastAPI endpoint exposure, and TensorBoard training monitoring.
+
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![YOLOv11](https://img.shields.io/badge/YOLOv11-FF4D4D?style=flat-square)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![timm](https://img.shields.io/badge/timm-orange?style=flat-square)
+
+</td>
+<td align="center" width="33%">
+
+### 👨‍💻 Krishna Das
+**Full-Stack Developer & Data Engineer**
+
+Owns data preparation, the React.js frontend architecture, and the Suggestion Engine time-series logic. Designed the **GSAP ScrollTrigger** frame-scrubbing system to replace heavy Three.js WebGL on low-end mobile field devices.
+
+![React](https://img.shields.io/badge/React.js-61DAFB?style=flat-square&logo=react&logoColor=black)
+![GSAP](https://img.shields.io/badge/GSAP-00e67a?style=flat-square)
+![Leaflet](https://img.shields.io/badge/Leaflet.js-199900?style=flat-square&logo=leaflet&logoColor=white)
+![Albumentations](https://img.shields.io/badge/Albumentations-4d9fff?style=flat-square)
+
+</td>
+<td align="center" width="33%">
+
+### 👨‍🏫 Darshan U Shetty
+**Project Mentor**
+
+Guided architectural decisions including the dual-stream fusion strategy and the GSAP frame-scrubbing innovation. Provided Week 1 sign-off and mathematical accountability requirements for tensor concatenation across the dual backbone.
+
+![IEEE](https://img.shields.io/badge/IEEE-00629B?style=flat-square&logo=ieee&logoColor=white)
+![MIT ADT](https://img.shields.io/badge/MIT_ADT_University-a855f7?style=flat-square)
+
+*Signed off: 6 June 2026*
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📓 Mentor Meeting Logs
+
+<details>
+<summary><b>Week 1 Mentor Meeting Log — 3, 4, 6 June 2026</b></summary>
+
+| Field | Details |
+|-------|---------|
+| **Dates** | 3/6/26, 4/6/26 (×2), 6/6/26 |
+| **Mode** | Google Meet |
+| **Duration** | 5pm–6pm · 11:30am–12:30pm · 6:30pm–7:00pm · 12:30pm–1:00pm |
+| **GitHub Commit** | [View commits](https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113/commits/main/) |
+
+**Attendance:**
+
+| Member | Role | Attended | Remarks |
+|--------|------|----------|---------|
+| Aaryan Mudvikar | Lead AI Engineer & Backend Architect | ✅ Yes | Present throughout core architecture review |
+| Krishna Das | Full-Stack Developer & Data Engineer | ✅ Yes | Discussed scalability of frontend and enhanced 3D UI |
+
+**Key Discussion Points:**
+- Finalized dual-stream hybrid model scope (ConvNeXt + Swin V2 + YOLOv11 video parsing agent)
+- Identified high GPU cost of Three.js WebGL on mobile browsers → proposed GSAP ScrollTrigger frame-scrubbing as lightweight alternative
+- Data synthesis plan: CPDD + PlantDoc for maximal field variance without overfitting
+- Set milestones: Aaryan handles backend AI pipeline, Krishna handles dashboard architecture
+
+**Mentor Feedback:**
+
+> *"The basic design of the dual-stream is very well done; however, carefully document the feature fusion layer for the final IEEE review. Make sure that both feature maps are downsampled or regularized before concatenation to avoid the high-dimensional transformer tokens completely dominating the spatial texture gradients of the CNN. The GSAP frame-scrubbing architecture change from Three.js is very practical — pay special attention to tensor dimensions at the concatenation intersection point."*
+
+> **Sign-off:** Darshan U Shetty · 6 June 2026 ✅
+
+*Both students demonstrated good progress in Week 1. They actively reviewed relevant research papers, contributed to dataset collection and model training activities, and successfully presented an initial working prototype. They showed commitment, initiative, and good understanding of project objectives.*
+
+</details>
+
+<details>
+<summary><b>Week 2 Mentor Meeting Log — To be completed</b></summary>
+
+*Meeting details to be logged after Week 2 session.*
+
+</details>
+
+---
+
+## 🔬 Development Methodology
+
+The team uses **Agile-Iterative Development** — separating backend AI training from frontend design with weekly check-ins for integration.
+
+```
+Branch Strategy:
+├── main            ← stable, weekly merge (every Friday)
+├── backend-ai      ← Aaryan: ML models, FastAPI, YOLOv11
+└── frontend-ui     ← Krishna: React, GSAP, Leaflet, Suggestion Engine
+```
+
+**Weekly Integration Audit (every Friday):**
+- Tensor dimension alignment checks across the fusion layer
+- Pipeline verification blocks (built in Week 1)
+- TensorBoard loss curve cross-reference
+- FastAPI ↔ React state sync validation
+
+---
+
+## 📖 Bibliography
+
+```
+[1] S. P. Mohanty, D. P. Hughes, and M. Salathé, "Using Deep Learning for Image-Based
+    Plant Disease Detection," Front. Plant Sci., vol. 7, p. 1419, Sep. 2016.
+    DOI: 10.3389/fpls.2016.01419
+
+[2] Visual Transformer Group, "AI-SCAN: Advancing plant leaf disease detection with
+    Residual Convolutional Swin Transformer," CABI Digit. Libr., 2025.
+    DOI: 10.1079/ab.2025.0022
+
+[3] Precision Agro Research, "Precision agriculture with YOLO-Leaf: advanced methods
+    for detecting leaf diseases," Front. Plant Sci., 2024.
+    DOI: 10.3389/fpls.2024.1452502
+
+[4] Deep Vision Synthetics, "Deep vision in agriculture: assessing the function of YOLO
+    in the classification of plant leaf diseases," PMC, 2025.
+    PMCID: PMC12750877
+
+[5] Agro-Informatics Alliance, "Spatiotemporal Tracking and Weather-Driven Decision
+    Support Systems in Smart Farming," Agriculture (MDPI), vol. 13, no. 11, 2023.
+    DOI: 10.3390/agriculture13112143
+```
+
+---
+
+## 📜 Declaration
+
+We, **Aaryan Mudvikar** and **Krishna Das**, hereby declare that the project work incorporated in the present project entitled *"Advanced Crop Disease Prediction & Spatiotemporal Suggestion System"* is original work. We have properly acknowledged material collected from secondary sources wherever required. We solely own the responsibility for the originality of the entire content.
+
+> **Note:** Any work carried out during this internship — whether technical, creative, or research-based — may only be published or disclosed with prior written permission from the IEEE MIT ADT University Student Branch.
+
+---
+
+## 🔗 Links & Resources
 
 <div align="center">
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 160" width="860" height="160">
-  <rect width="860" height="160" rx="12" fill="#101415" stroke="#3d4a3d" stroke-width="1.5"/>
-  <text x="430" y="26" font-family="monospace" font-size="11" fill="#4be277" text-anchor="middle" letter-spacing="2">// COLOR SYSTEM — AGRI-FUTURISM PALETTE</text>
-  <line x1="40" y1="36" x2="820" y2="36" stroke="#3d4a3d" stroke-width="1"/>
-
-  <!-- Swatches -->
-  <rect x="40" y="50" width="90" height="60" rx="6" fill="#4be277"/>
-  <text x="85" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#4be277</text>
-  <text x="85" y="138" font-family="monospace" font-size="7" fill="#4be277" text-anchor="middle">Primary Lime</text>
-
-  <rect x="145" y="50" width="90" height="60" rx="6" fill="#22c55e"/>
-  <text x="190" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#22c55e</text>
-  <text x="190" y="138" font-family="monospace" font-size="7" fill="#22c55e" text-anchor="middle">Lime Dim</text>
-
-  <rect x="250" y="50" width="90" height="60" rx="6" fill="#ffb880"/>
-  <text x="295" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#ffb880</text>
-  <text x="295" y="138" font-family="monospace" font-size="7" fill="#ffb880" text-anchor="middle">Terra Clay</text>
-
-  <rect x="355" y="50" width="90" height="60" rx="6" fill="#95d3ba"/>
-  <text x="400" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#95d3ba</text>
-  <text x="400" y="138" font-family="monospace" font-size="7" fill="#95d3ba" text-anchor="middle">Forest Teal</text>
-
-  <rect x="460" y="50" width="90" height="60" rx="6" fill="#101415"/>
-  <rect x="460" y="50" width="90" height="60" rx="6" fill="none" stroke="#3d4a3d" stroke-width="1"/>
-  <text x="505" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#101415</text>
-  <text x="505" y="138" font-family="monospace" font-size="7" fill="#bccbb9" text-anchor="middle">Base BG</text>
-
-  <rect x="565" y="50" width="90" height="60" rx="6" fill="#1d2022"/>
-  <text x="610" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#1d2022</text>
-  <text x="610" y="138" font-family="monospace" font-size="7" fill="#bccbb9" text-anchor="middle">Surface Mid</text>
-
-  <rect x="670" y="50" width="90" height="60" rx="6" fill="#e0e3e5"/>
-  <text x="715" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#e0e3e5</text>
-  <text x="715" y="138" font-family="monospace" font-size="7" fill="#e0e3e5" text-anchor="middle">On Surface</text>
-
-  <rect x="775" y="50" width="60" height="60" rx="6" fill="#bccbb9"/>
-  <text x="805" y="125" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">#bccbb9</text>
-  <text x="805" y="138" font-family="monospace" font-size="7" fill="#bccbb9" text-anchor="middle">Muted</text>
-</svg>
+| Resource | Link |
+|----------|------|
+| 📂 **GitHub Repository** | [ieee-internship-project---Agroshield-grp113](https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113) |
+| 🌿 **Primary Branch** | `main` |
+| 🔀 **Dev Branches** | `backend-ai` · `frontend-ui` |
+| 📅 **Last Updated** | 05/06/2026 |
+| 🏛️ **Submitted To** | IEEE TechForGood 2026 |
+| 🤝 **In Association With** | IEEE Student Branch, MIT ADT University |
+| 🌐 **In Collaboration With** | IEEE Maharashtra Section · IEEE Region 10 AIPSCC |
 
 </div>
 
-### CSS Custom Properties
-
-```css
-:root {
-  /* ── Core Brand ── */
-  --lime:        #4be277;    /* Primary — Tech Lime */
-  --lime-dim:    #22c55e;    /* Lime gradient end */
-  --lime-glow:   rgba(75,226,119,0.25);
-
-  /* ── Accent ── */
-  --clay:        #ffb880;    /* Tertiary — Terra Clay */
-  --teal:        #95d3ba;    /* Secondary — Forest Teal */
-
-  /* ── Surfaces (dark mode only) ── */
-  --bg:          #101415;    /* Page background */
-  --bg-low:      #191c1e;    /* Sidebar, footer */
-  --bg-mid:      #1d2022;    /* Cards */
-  --bg-high:     #272a2c;    /* Elevated cards */
-  --bg-highest:  #323537;    /* Tooltips, menus */
-
-  /* ── Text ── */
-  --text:        #e0e3e5;    /* Body text */
-  --text-muted:  #bccbb9;    /* Secondary text */
-
-  /* ── Borders ── */
-  --border:      rgba(61,74,61,0.8);   /* Subtle outline */
-  --border-lime: rgba(75,226,119,0.2); /* Active states */
-
-  /* ── Glass ── */
-  --glass:       rgba(255,255,255,0.06);
-  --glass-border:rgba(255,255,255,0.09);
-
-  /* ── Radius ── */
-  --r-sm:   8px;
-  --r-md:   12px;
-  --r-lg:   16px;
-  --r-xl:   20px;
-  --r-full: 9999px;
-}
-```
-
-### Typography
-
-| Token | Font | Size | Weight | Usage |
-|-------|------|------|--------|-------|
-| `display-lg` | Space Grotesk | 48–80px | 800 | Hero headlines |
-| `headline-md` | Space Grotesk | 24–32px | 700 | Section titles |
-| `body-lg` | Hanken Grotesk | 17–18px | 400 | Body copy |
-| `body-md` | Hanken Grotesk | 14–16px | 400 | UI text |
-| `label-caps` | JetBrains Mono | 10–12px | 500 | Labels, HUD data |
-
----
-
-## 📱 Responsive Breakpoints
-
-<div align="center">
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 200" width="860" height="200">
-  <rect width="860" height="200" rx="12" fill="#101415" stroke="#3d4a3d" stroke-width="1.5"/>
-  <text x="430" y="26" font-family="monospace" font-size="11" fill="#4be277" text-anchor="middle" letter-spacing="2">// RESPONSIVE BREAKPOINTS</text>
-  <line x1="40" y1="38" x2="820" y2="38" stroke="#3d4a3d" stroke-width="1"/>
-
-  <!-- Timeline bar -->
-  <rect x="60" y="80" width="740" height="8" rx="4" fill="#272a2c"/>
-  <!-- Filled portion mobile to full -->
-  <rect x="60" y="80" width="740" height="8" rx="4" fill="url(#bar-lime)" opacity="0.5"/>
-
-  <!-- Breakpoint markers -->
-  <!-- Mobile: 320px -->
-  <line x1="60" y1="72" x2="60" y2="96" stroke="#4be277" stroke-width="2"/>
-  <text x="60" y="66" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle">320px</text>
-  <text x="60" y="112" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Mobile</text>
-  <text x="60" y="124" font-family="monospace" font-size="7" fill="#3d4a3d" text-anchor="middle">1 column</text>
-
-  <!-- Tablet: ~600px - position proportionally -->
-  <line x1="280" y1="72" x2="280" y2="96" stroke="#95d3ba" stroke-width="2"/>
-  <text x="280" y="66" font-family="monospace" font-size="9" fill="#95d3ba" text-anchor="middle">600px</text>
-  <text x="280" y="112" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Small Tablet</text>
-  <text x="280" y="124" font-family="monospace" font-size="7" fill="#3d4a3d" text-anchor="middle">2 cols grid</text>
-
-  <!-- Tablet: ~900px -->
-  <line x1="520" y1="72" x2="520" y2="96" stroke="#ffb880" stroke-width="2"/>
-  <text x="520" y="66" font-family="monospace" font-size="9" fill="#ffb880" text-anchor="middle">900px</text>
-  <text x="520" y="112" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Tablet+</text>
-  <text x="520" y="124" font-family="monospace" font-size="7" fill="#3d4a3d" text-anchor="middle">Full layout</text>
-
-  <!-- Desktop: 1100px+ -->
-  <line x1="800" y1="72" x2="800" y2="96" stroke="#4be277" stroke-width="2"/>
-  <text x="800" y="66" font-family="monospace" font-size="9" fill="#4be277" text-anchor="middle">1100px+</text>
-  <text x="800" y="112" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Desktop</text>
-  <text x="800" y="124" font-family="monospace" font-size="7" fill="#3d4a3d" text-anchor="middle">Max-width</text>
-
-  <!-- Device icons -->
-  <text x="120" y="170" font-family="monospace" font-size="24" text-anchor="middle">📱</text>
-  <text x="120" y="188" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Single column</text>
-  <text x="120" y="198" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Nav hidden</text>
-
-  <text x="380" y="170" font-family="monospace" font-size="24" text-anchor="middle">💻</text>
-  <text x="380" y="188" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">2-col grids</text>
-  <text x="380" y="198" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Sidebar hidden</text>
-
-  <text x="660" y="170" font-family="monospace" font-size="24" text-anchor="middle">🖥</text>
-  <text x="660" y="188" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">Full layout</text>
-  <text x="660" y="198" font-family="monospace" font-size="8" fill="#bccbb9" text-anchor="middle">All features on</text>
-</svg>
-
-</div>
-
----
-
-## 🔧 Customization
-
-### Changing Brand Colors
-
-Open `agrilens-landing.html` and edit the `:root` block at the top of the `<style>` tag:
-
-```css
-:root {
-  /* Change primary lime to your brand color */
-  --lime: #YOUR_COLOR;
-  --lime-dim: #YOUR_DARKER_SHADE;
-  --lime-glow: rgba(R, G, B, 0.25);
-}
-```
-
-### Swapping Sections
-
-Each section is self-contained. Cut/paste any `<section id="...">...</section>` block to reorder.
-
-### Adding Real Images
-
-Replace the `https://images.unsplash.com/...` URLs in `<img src="...">` tags with your own image paths:
-
-```html
-<!-- Before -->
-<img src="https://images.unsplash.com/photo-xxx" alt="..."/>
-
-<!-- After -->
-<img src="./assets/images/your-field.jpg" alt="..."/>
-```
-
-### Updating Stats
-
-Search for the `animateCounter` data array in the `<script>` block:
-
-```javascript
-const statData = [
-  { val: 99.8, suffix: '%' },   // Sensory Accuracy
-  { val: 12,   suffix: 'ms' },  // Response Latency
-  { val: 845,  suffix: 'K' },   // Active Nodes
-  { val: 15,   suffix: '' }     // Countries
-];
-```
-
-### Disabling Animations (accessibility)
-
-The file already respects `prefers-reduced-motion`:
-
-```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  .anim-up, .anim-left, .anim-right, .anim-scale {
-    opacity: 1;
-    transform: none;
-  }
-}
-```
-
----
-
-## 🌐 Browser Support
-
-| Browser | Support | Notes |
-|---------|---------|-------|
-| Chrome 90+ | ✅ Full | Recommended |
-| Firefox 88+ | ✅ Full | — |
-| Safari 14+ | ✅ Full | backdrop-filter supported |
-| Edge 90+ | ✅ Full | Chromium-based |
-| Safari iOS 14+ | ✅ Full | Mobile-optimized |
-| Chrome Android | ✅ Full | — |
-| IE 11 | ❌ Not supported | CSS variables not supported |
-
----
-
-## 🤝 Contributing
-
-```bash
-# 1. Fork the repository
-# 2. Clone your fork
-git clone https://github.com/your-username/agrilens-3d.git
-
-# 3. Create a feature branch
-git checkout -b feature/your-feature-name
-
-# 4. Make changes to agrilens-landing.html
-# 5. Test in multiple browsers
-# 6. Commit with a clear message
-git commit -m "feat: add soil moisture gauge to dashboard"
-
-# 7. Push and open a Pull Request
-git push origin feature/your-feature-name
-```
-
-### Commit Convention
-
-```
-feat:     New feature or section
-fix:      Bug fix
-style:    Visual / CSS changes only
-docs:     README or documentation
-refactor: Code restructure without behavior change
-```
-
----
-
-## 📜 License
-
-```
-MIT License
-
-Copyright (c) 2024 Agri-Futurism Systems
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
-
 ---
 
 <div align="center">
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 80" width="860" height="80">
-  <defs>
-    <linearGradient id="footer-g" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" style="stop-color:#101415"/>
-      <stop offset="50%" style="stop-color:#1d2022"/>
-      <stop offset="100%" style="stop-color:#101415"/>
-    </linearGradient>
-  </defs>
-  <rect width="860" height="80" rx="10" fill="url(#footer-g)" stroke="#3d4a3d" stroke-width="1"/>
-  <circle cx="430" cy="28" r="6" fill="#4be277" opacity="0.9"/>
-  <text x="430" y="50" font-family="monospace" font-size="12" fill="#4be277" text-anchor="middle" letter-spacing="2">AgriLens 3D</text>
-  <text x="430" y="68" font-family="monospace" font-size="9" fill="#bccbb9" text-anchor="middle" letter-spacing="1">© 2024 AGRI-FUTURISM SYSTEMS · PRECISION GROWTH GUARANTEED</text>
-</svg>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=00e67a&height=120&section=footer&text=IEEE%20TechForGood%202026&fontSize=20&fontColor=ffffff&fontAlignY=65" width="100%"/>
 
-<br/>
+**Team CTRL+ALT+DEFEAT · Group 113 · MIT ADT University, Pune**
 
-**Made with 🌿 for the future of agriculture**
+*1st June – 30th June 2026 · Fully Remote*
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer&animation=fadeIn"/>
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113)
+[![IEEE](https://img.shields.io/badge/IEEE-00629B?style=for-the-badge&logo=ieee&logoColor=white)](https://techforgood.ieee.org)
 
 </div>
