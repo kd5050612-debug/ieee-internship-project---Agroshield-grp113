@@ -1,0 +1,1 @@
+cd Desktop\Projects\AgroShield-AI-v2\dataset\plantvillage\ml_pipeline\content\AgroShield-AI-v2\dataset\plantvillage\ml_pipeline
