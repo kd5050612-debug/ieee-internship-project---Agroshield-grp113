@@ -1,37 +1,32 @@
 <div align="center">
 
-<!-- ANIMATED HEADER -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=00e67a&height=200&section=header&text=AgroShield&fontSize=80&fontColor=ffffff&fontAlignY=35&desc=Advanced%20Crop%20Disease%20Prediction%20%26%20Spatiotemporal%20Suggestion%20System&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=00e67a&height=200&section=header&text=AgroShield&fontSize=80&fontColor=ffffff&fontAlignY=35&desc=Advanced%20Crop%20Disease%20Prediction%20%26%20Spatiotemporal%20Suggestion%20System&descAlignY=58&descSize=16&animation=fadeIn" alt="AgroShield Header" />
 
-<!-- BADGES ROW 1 -->
-<p>
-  <img src="https://img.shields.io/badge/IEEE%20TechForGood-2026-00e67a?style=for-the-badge&logo=ieee&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Week-2%20of%204-f5a623?style=for-the-badge&logo=clockify&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Status-Active%20Development-00e67a?style=for-the-badge&logo=statuspage&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Team-CTRL%2BALT%2BDEFEAT-a855f7?style=for-the-badge&logo=github&logoColor=white"/>
+<p align="center">
+  <img src="https://img.shields.io/badge/IEEE%20TechForGood-2026-00e67a?style=for-the-badge&logo=ieee&logoColor=white" alt="IEEE Badge"/>
+  <img src="https://img.shields.io/badge/Week-2%20of%204-f5a623?style=for-the-badge&logo=clockify&logoColor=white" alt="Week Badge"/>
+  <img src="https://img.shields.io/badge/Status-Active%20Development-00e67a?style=for-the-badge&logo=statuspage&logoColor=white" alt="Status Badge"/>
+  <img src="https://img.shields.io/badge/Team-CTRL%2BALT%2BDEFEAT-a855f7?style=for-the-badge&logo=github&logoColor=white" alt="Team Badge"/>
 </p>
 
-<!-- BADGES ROW 2 - TECH STACK -->
-<p>
-  <img src="https://img.shields.io/badge/PyTorch-v2.3.0%2Bcu121-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
-  <img src="https://img.shields.io/badge/FastAPI-v0.111.0-009688?style=flat-square&logo=fastapi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/React.js-v18.3%2B-61DAFB?style=flat-square&logo=react&logoColor=black"/>
-  <img src="https://img.shields.io/badge/YOLOv11-Real--time-FF4D4D?style=flat-square&logo=yolo&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Swin%20Transformer-V2-4d9fff?style=flat-square&logo=tensorflow&logoColor=white"/>
-  <img src="https://img.shields.io/badge/ConvNeXt-Tiny-f5a623?style=flat-square&logo=pytorch&logoColor=white"/>
+<p align="center">
+  <img src="https://img.shields.io/badge/PyTorch-v2.3.0%2Bcu121-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch"/>
+  <img src="https://img.shields.io/badge/FastAPI-v0.111.0-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/React.js-v18.3%2B-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/YOLOv11-Real--time-FF4D4D?style=flat-square&logo=yolo&logoColor=white" alt="YOLOv11"/>
+  <img src="https://img.shields.io/badge/Swin%20Transformer-V2-4d9fff?style=flat-square&logo=tensorflow&logoColor=white" alt="Swin Transformer V2"/>
+  <img src="https://img.shields.io/badge/ConvNeXt-Tiny-f5a623?style=flat-square&logo=pytorch&logoColor=white" alt="ConvNeXt Tiny"/>
 </p>
 
-<!-- BADGES ROW 3 -->
-<p>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
-  <img src="https://img.shields.io/badge/CUDA-12.1-76B900?style=flat-square&logo=nvidia&logoColor=white"/>
-  <img src="https://img.shields.io/badge/timm-v1.0.3-orange?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Grad--CAM-XAI-a855f7?style=flat-square"/>
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License"/>
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/CUDA-12.1-76B900?style=flat-square&logo=nvidia&logoColor=white" alt="CUDA"/>
+  <img src="https://img.shields.io/badge/timm-v1.0.3-orange?style=flat-square" alt="timm"/>
+  <img src="https://img.shields.io/badge/Grad--CAM-XAI-a855f7?style=flat-square" alt="Grad-CAM"/>
 </p>
 
-<!-- ANIMATED TYPING -->
 <a href="https://github.com/kd5050612-debug/ieee-internship-project---Agroshield-grp113">
   <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=00E67A&center=true&vCenter=true&width=700&lines=Dual-Stream+Hybrid+Feature+Fusion+CNN;ConvNeXt-Tiny+%2B+Swin+Transformer+V2;Real-Time+YOLOv11+Field+Analytics+Engine;Weather-Adaptive+Spatiotemporal+Roadmaps;Grad-CAM+Explainable+AI+Heatmaps" alt="Typing SVG" />
 </a>
