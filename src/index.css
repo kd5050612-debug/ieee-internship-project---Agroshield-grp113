@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #071409;
+    color: #e2ffe8;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a1a0e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f4a2e;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #39d353;
+  }
+}
+
+@layer components {
+  .hud-border {
+    border: 1px solid rgba(57, 211, 83, 0.25);
+  }
+  .hud-border-bright {
+    border: 1px solid rgba(57, 211, 83, 0.5);
+  }
+  .card-dark {
+    background: rgba(10, 26, 14, 0.8);
+    border: 1px solid rgba(57, 211, 83, 0.2);
+    backdrop-filter: blur(8px);
+  }
+  .card-darker {
+    background: rgba(7, 14, 9, 0.9);
+    border: 1px solid rgba(57, 211, 83, 0.15);
+  }
+  .neon-text {
+    color: #39d353;
+    text-shadow: 0 0 8px rgba(57, 211, 83, 0.5);
+  }
+  .neon-btn {
+    background: #39d353;
+    color: #030d06;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .neon-btn:hover {
+    background: #4ade80;
+    box-shadow: 0 0 20px rgba(57, 211, 83, 0.4);
+  }
+  .outline-btn {
+    background: transparent;
+    border: 1px solid rgba(57, 211, 83, 0.4);
+    color: #e2ffe8;
+    transition: all 0.2s;
+  }
+  .outline-btn:hover {
+    border-color: #39d353;
+    background: rgba(57, 211, 83, 0.08);
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: rgba(226, 255, 232, 0.6);
+    font-size: 13px;
+  }
+  .sidebar-item:hover {
+    background: rgba(57, 211, 83, 0.08);
+    color: #e2ffe8;
+  }
+  .sidebar-item.active {
+    background: rgba(57, 211, 83, 0.15);
+    color: #39d353;
+    border: 1px solid rgba(57, 211, 83, 0.25);
+  }
+  .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #39d353, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  .corner-tl {
+    border-top: 2px solid #39d353;
+    border-left: 2px solid #39d353;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+  .corner-tr {
+    border-top: 2px solid #39d353;
+    border-right: 2px solid #39d353;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  .corner-bl {
+    border-bottom: 2px solid #39d353;
+    border-left: 2px solid #39d353;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+  }
+  .corner-br {
+    border-bottom: 2px solid #39d353;
+    border-right: 2px solid #39d353;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+}
+
+@keyframes scanLine {
+  0% { top: 0; opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(57,211,83,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,211,83,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.radial-glow {
+  background: radial-gradient(ellipse at center, rgba(57,211,83,0.12) 0%, transparent 65%);
+}
+
+.progress-bar {
+  height: 4px;
+  background: rgba(57,211,83,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  border-radius: 2px;
+  transition: width 1s ease-out;
+}
+
+.donut {
+  transform: rotate(-90deg);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #39d353;
+  box-shadow: 0 0 6px #39d353;
+  animation: blink 2s ease-in-out infinite;
+  display: inline-block;
+}

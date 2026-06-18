@@ -1,0 +1,9 @@
+Place your trained AgroShieldHybridModel .pth weights file in this directory.
+
+The API server (backend/api_server/main.py) looks for these filenames in order:
+  1. best_model.pth
+  2. agroshield_hybrid.pth
+  3. best.pth
+  or any *.pth file found recursively.
+
+Expected: PyTorch state_dict matching AgroShieldHybridModel(num_classes=38).
