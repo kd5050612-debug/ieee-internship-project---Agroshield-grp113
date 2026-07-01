@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import base64
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import traceback
 from io import BytesIO
 from pathlib import Path
@@ -34,7 +36,7 @@ WEIGHTS_DIR = SCRIPT_DIR.parent / "backend" / "agroshield_hybrid"
 if MODEL_SRC_DIR.exists():
     sys.path.insert(0, str(MODEL_SRC_DIR))
 
-from model import AgroShieldHybridModel
+from models import AgroShieldHybridModel
 
 
 # ---------------------------------------------------------------------------
