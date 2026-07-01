@@ -12,3 +12,4 @@ passlib
 pyjwt
 python-multipart
 bcrypt
+timm

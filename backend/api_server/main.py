@@ -36,7 +36,7 @@ WEIGHTS_DIR = SCRIPT_DIR.parent / "backend" / "agroshield_hybrid"
 if MODEL_SRC_DIR.exists():
     sys.path.insert(0, str(MODEL_SRC_DIR))
 
-from models import AgroShieldHybridModel
+from dataset.plantvillage.ml_pipeline.model import AgroShieldHybridModel
 
 
 # ---------------------------------------------------------------------------
