@@ -17,21 +17,23 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from PIL import Image, ImageOps
 from torchvision import transforms
-SCRIPT_DIR = Path(__file__).resolve().parent
+import sys
+from pathlib import Path
 
-# Go up to the root folder, then go straight into the ml_pipeline directory
-MODEL_SRC_DIR = SCRIPT_DIR.parent.parent / "dataset" / "plantvillage" / "ml_pipeline"
-WEIGHTS_DIR = SCRIPT_DIR.parent / "agroshield_hybrid"
+# Explicitly pinpoint Render's absolute workspace path
+RENDER_SRC = Path("/opt/render/project/src")
+LOCAL_SRC = Path(__file__).resolve().parent.parent.parent
 
-if MODEL_SRC_DIR.exists():
+# Choose whichever one actually exists
+BASE_DIR = RENDER_SRC if RENDER_SRC.exists() else LOCAL_SRC
+MODEL_SRC_DIR = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
+
+# Inject the model path directly into Python's search paths
+if str(MODEL_SRC_DIR) not in sys.path:
     sys.path.insert(0, str(MODEL_SRC_DIR))
-else:
-    # Fallback if structure varies slightly on the container
-    sys.path.insert(0, str(SCRIPT_DIR.parent.parent))
 
-# Import directly from the file name since the folder is now in sys.path
+# Now import the class cleanly from the file name
 from model import AgroShieldHybridModel
-
 
 # ---------------------------------------------------------------------------
 # Class labels
