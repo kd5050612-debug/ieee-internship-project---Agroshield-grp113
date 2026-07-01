@@ -1,6 +1,12 @@
-- [ ] Inspect FastAPI backend label mapping logic (classes.json vs classes (1).json vs data.pkl)
-- [ ] Patch backend/api_server/main.py to correctly load the label mapping from your provided file (including handling object/map JSON)
-- [ ] Add a safe fallback to derive labels from data.pkl if it contains the mapping
-- [ ] Run backend locally (or a quick /health + sample /predict) to verify disease_name matches expected class ids
-- [ ] Ensure frontend consumes the backend response unchanged
+# TODO - Auth system not working
+
+- [ ] Collect network status codes for auth endpoints:
+  - [ ] GET /auth/csrf
+  - [ ] POST /auth/login
+- [ ] Inspect browser cookie storage for `agrilens_csrf` and `access_token`.
+- [ ] Fix likely CSRF/cookie transport issue:
+  - [ ] Verify backend cookie flags (COOKIE_SECURE, COOKIE_SAMESITE) vs local http:// setup
+  - [ ] Ensure backend CORS allow_origins + allow_credentials matches frontend origin
+- [ ] Add minimal debug logging/response details for CSRF failures (dev only).
+- [ ] Re-test login flow end-to-end (unlock → OTP modal appears → OTP verification → dashboard loads).
 

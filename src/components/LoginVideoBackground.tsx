@@ -3,8 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
 export default function LoginVideoBackground() {
-  // Videos must be served from /public to work in the browser.
-  // Your folder is: <project>/Video  => public path: /Video/*
   const videos = useMemo(
     () => [
       '/Video/AI_core_transforms_farmland_202606071226 (1).mp4',

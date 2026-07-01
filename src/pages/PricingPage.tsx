@@ -21,14 +21,76 @@ interface Props {
   onNavigate: (page: string) => void;
 }
 
+const fallbackPlans: Plan[] = [
+  {
+    id: 'fallback-basic',
+    sort_order: 1,
+    name: 'Basic',
+    tier_id: 'basic',
+    sub_label: 'For Individual Farmers',
+    price_monthly: 49,
+    price_yearly: 39,
+    price_label: null,
+    popular: false,
+    cta_label: 'Start Seeding',
+    cta_variant: 'outline',
+    features: [
+      'Single Sector Telemetry',
+      '5 AI Diagnostics / Week',
+      'Standard 3D Mapping',
+      'Email Growth Support',
+    ],
+  },
+  {
+    id: 'fallback-pro',
+    sort_order: 2,
+    name: 'Pro',
+    tier_id: 'pro',
+    sub_label: 'Medium Operations',
+    price_monthly: 149,
+    price_yearly: 119,
+    price_label: null,
+    popular: true,
+    cta_label: 'Optimize Now',
+    cta_variant: 'filled',
+    features: [
+      'Unlimited Sector Telemetry',
+      '50 AI Diagnostics / Week',
+      'Real-time Drone Sync',
+      'Predictive Yield Modeling',
+      '24/7 Priority Comms',
+    ],
+  },
+  {
+    id: 'fallback-enterprise',
+    sort_order: 3,
+    name: 'Enterprise',
+    tier_id: 'enterprise',
+    sub_label: 'Global Networks',
+    price_monthly: null,
+    price_yearly: null,
+    price_label: 'Custom',
+    popular: false,
+    cta_label: 'Contact Logistics',
+    cta_variant: 'outline',
+    features: [
+      'Unlimited Satellite Scans',
+      'Fleet-wide AI Deployment',
+      'Global Market Integration',
+      'Dedicated System Architect',
+    ],
+  },
+];
+
 export default function PricingPage({ onNavigate }: Props) {
   const [yearly, setYearly] = useState(false);
-  const [plans, setPlans] = useState<Plan[]>([]);
+  const [plans, setPlans] = useState<Plan[]>(fallbackPlans);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Keep UI responsive even if Supabase env vars are missing.
     if (!supabase) {
+      setPlans(fallbackPlans);
       setLoading(false);
       return;
     }
@@ -37,11 +99,21 @@ export default function PricingPage({ onNavigate }: Props) {
       .from('plans')
       .select('*')
       .order('sort_order', { ascending: true })
-      .then(({ data }) => {
-        if (data) setPlans(data);
+      .then(({ data, error }) => {
+        if (error) {
+          setPlans(fallbackPlans);
+        } else if (data && data.length > 0) {
+          setPlans(data as Plan[]);
+        } else {
+          setPlans(fallbackPlans);
+        }
       })
-      .then(() => undefined, () => undefined)
-      .then(() => setLoading(false));
+      .catch(() => {
+        setPlans(fallbackPlans);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
   }, []);
 
@@ -51,6 +123,19 @@ export default function PricingPage({ onNavigate }: Props) {
     if (plan.price_label) return plan.price_label;
     const p = yearly ? plan.price_yearly : plan.price_monthly;
     return p !== null ? `$${p}` : null;
+  };
+
+  const getPriceSuffix = () => (yearly ? '/yr' : '/mo');
+
+  const getMonthlyPrice = (plan: Plan) => (plan.price_monthly !== null ? `$${plan.price_monthly}` : '—');
+  const getYearlyPrice = (plan: Plan) => (plan.price_yearly !== null ? `$${plan.price_yearly}` : '—');
+  const getYearlySavings = (plan: Plan) => {
+    const monthly = plan.price_monthly ?? 0;
+    const yearly = plan.price_yearly ?? 0;
+    if (monthly <= 0 || yearly <= 0) return null;
+    const savings = monthly * 12 - yearly;
+    const percent = Math.round((savings / (monthly * 12)) * 100);
+    return `${percent}% off`;
   };
 
   return (
@@ -155,7 +240,7 @@ export default function PricingPage({ onNavigate }: Props) {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-4xl">
             {plans.map(plan => {
               const price = getPrice(plan);
-              const isMonthlyPriced = !plan.price_label && plan.price_monthly !== null;
+              const showBestValue = yearly && plan.popular;
               return (
                 <div
                   key={plan.id}
@@ -167,7 +252,7 @@ export default function PricingPage({ onNavigate }: Props) {
                   {plan.popular && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                       <span className="bg-neon-green text-forest-950 text-[9px] font-bold uppercase tracking-widest rounded-full px-4 py-1">
-                        Most Popular
+                        {showBestValue ? 'Best Value' : 'Most Popular'}
                       </span>
                     </div>
                   )}
@@ -183,16 +268,41 @@ export default function PricingPage({ onNavigate }: Props) {
                     </div>
 
                     {/* Price */}
-                    <div className="mb-6">
+                    <div className="mb-4">
                       {price ? (
                         <div className="flex items-end gap-1">
                           <span className="text-4xl font-bold text-white">{price}</span>
-                          {isMonthlyPriced && (
-                            <span className="text-sm text-white/35 mb-1.5">/mo</span>
-                          )}
+                          {!plan.price_label && <span className="text-sm text-white/35 mb-1.5">{getPriceSuffix()}</span>}
                         </div>
                       ) : null}
                     </div>
+
+                    {/* Price details */}
+                    {!plan.price_label && (
+                      <div className="mb-6 rounded-xl border border-white/10 bg-forest-900/50 px-3 py-3">
+                        <div className="grid grid-cols-2 gap-3 text-left">
+                          <div>
+                            <p className="text-[8px] font-mono uppercase tracking-[0.3em] text-white/30">Monthly</p>
+                            <p className={`text-sm font-semibold ${yearly ? 'text-white/45' : 'text-neon-green'}`}>
+                              {getMonthlyPrice(plan)}/mo
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-[8px] font-mono uppercase tracking-[0.3em] text-white/30">Yearly</p>
+                            <p className={`text-sm font-semibold ${yearly ? 'text-neon-green' : 'text-white/45'}`}>
+                              {getYearlyPrice(plan)}/yr
+                            </p>
+                          </div>
+                        </div>
+                        {getYearlySavings(plan) && (
+                          <div className="mt-2 rounded-lg bg-neon-green/10 px-2 py-1 text-center">
+                            <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-neon-green">
+                              {getYearlySavings(plan)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     {/* Features */}
                     <ul className="flex flex-col gap-2.5 flex-1 mb-7">

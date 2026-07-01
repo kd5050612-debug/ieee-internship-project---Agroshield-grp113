@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Home, Leaf, Layers, ShoppingBag, Wrench, Settings, HelpCircle, Plus, Search, SlidersHorizontal, Heart, MessageSquare, Share2, MoreHorizontal, Bell, User } from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { Home, Leaf, Layers, ShoppingBag, Wrench, Settings, HelpCircle, Plus, Search, SlidersHorizontal, Heart, MessageSquare, Share2, MoreHorizontal, Bell, User, X } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface Post {
@@ -32,6 +32,16 @@ export default function ForumPage({ onNavigate }: Props) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [activeNav, setActiveNav] = useState('market');
   const [search, setSearch] = useState('');
+  const [showComposer, setShowComposer] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [draft, setDraft] = useState({
+    author_name: '',
+    author_role: 'Farmer',
+    title: '',
+    body: '',
+    image_url: '',
+    tags: '',
+  });
 
   useEffect(() => {
     // Keep UI responsive even if Supabase env vars are missing.
@@ -51,6 +61,63 @@ export default function ForumPage({ onNavigate }: Props) {
   }, []);
 
 
+
+  const handleSubmitPost = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const title = draft.title.trim();
+    const body = draft.body.trim();
+    const authorName = draft.author_name.trim();
+
+    if (!title || !body || !authorName) {
+      return;
+    }
+
+    setSubmitting(true);
+
+    const newPost: Post = {
+      id: `${Date.now()}`,
+      author_name: authorName,
+      author_role: draft.author_role.trim() || 'Farmer',
+      author_avatar: null,
+      title,
+      body,
+      image_url: draft.image_url.trim() || null,
+      tags: draft.tags.split(',').map(tag => tag.trim()).filter(Boolean),
+      likes: 0,
+      comments: 0,
+      posted_ago: 'just now',
+    };
+
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('forum_posts')
+        .insert({
+          author_name: newPost.author_name,
+          author_role: newPost.author_role,
+          author_avatar: newPost.author_avatar,
+          title: newPost.title,
+          body: newPost.body,
+          image_url: newPost.image_url,
+          tags: newPost.tags,
+          likes: newPost.likes,
+          comments: newPost.comments,
+          posted_ago: newPost.posted_ago,
+        })
+        .select('*')
+        .single();
+
+      if (!error && data) {
+        setPosts(prev => [data as Post, ...prev]);
+      }
+    } else {
+      setPosts(prev => [newPost, ...prev]);
+    }
+
+    setDraft({ author_name: '', author_role: 'Farmer', title: '', body: '', image_url: '', tags: '' });
+    setShowComposer(false);
+    setSubmitting(false);
+  };
 
   const filtered = posts.filter(p =>
     !search || p.title.toLowerCase().includes(search.toLowerCase()) || p.body.toLowerCase().includes(search.toLowerCase())
@@ -102,7 +169,10 @@ export default function ForumPage({ onNavigate }: Props) {
 
         {/* New Post btn */}
         <div className="p-3 pt-0">
-          <button className="outline-btn w-full py-2.5 rounded-xl flex items-center justify-center gap-2 text-sm">
+          <button
+            onClick={() => setShowComposer(true)}
+            className="outline-btn w-full py-2.5 rounded-xl flex items-center justify-center gap-2 text-sm"
+          >
             <Plus size={14} className="text-neon-green" />
             New Post
           </button>
@@ -147,7 +217,10 @@ export default function ForumPage({ onNavigate }: Props) {
               <SlidersHorizontal size={14} className="text-neon-green/70" />
               Filters
             </button>
-            <button className="neon-btn px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm whitespace-nowrap">
+            <button
+              onClick={() => setShowComposer(true)}
+              className="neon-btn px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm whitespace-nowrap"
+            >
               <Plus size={14} />
               New Post
             </button>
@@ -224,6 +297,89 @@ export default function ForumPage({ onNavigate }: Props) {
           </div>
         </main>
       </div>
+
+      {showComposer && (
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl rounded-2xl border border-neon-green/20 bg-forest-900 p-5 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[10px] font-mono uppercase tracking-[0.35em] text-neon-green/70">Community Post</p>
+                <h3 className="text-xl font-semibold text-white">Share a farm update</h3>
+              </div>
+              <button
+                onClick={() => setShowComposer(false)}
+                className="rounded-lg border border-white/10 p-2 text-white/40 hover:text-white/70"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitPost} className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input
+                  value={draft.author_name}
+                  onChange={e => setDraft({ ...draft, author_name: e.target.value })}
+                  placeholder="Your name"
+                  className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+                />
+                <input
+                  value={draft.author_role}
+                  onChange={e => setDraft({ ...draft, author_role: e.target.value })}
+                  placeholder="Role (e.g. Farmer, Agronomist)"
+                  className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+                />
+              </div>
+
+              <input
+                value={draft.title}
+                onChange={e => setDraft({ ...draft, title: e.target.value })}
+                placeholder="Post title"
+                className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+              />
+
+              <textarea
+                value={draft.body}
+                onChange={e => setDraft({ ...draft, body: e.target.value })}
+                placeholder="Share what’s happening on your farm, your insights, and what other farmers should know."
+                rows={6}
+                className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <input
+                  value={draft.image_url}
+                  onChange={e => setDraft({ ...draft, image_url: e.target.value })}
+                  placeholder="Image URL (optional)"
+                  className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+                />
+                <input
+                  value={draft.tags}
+                  onChange={e => setDraft({ ...draft, tags: e.target.value })}
+                  placeholder="Tags (comma separated)"
+                  className="w-full rounded-xl border border-white/10 bg-forest-800/60 px-3 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-neon-green/35"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowComposer(false)}
+                  className="rounded-xl border border-white/10 px-4 py-2 text-sm text-white/60 hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="neon-btn rounded-xl px-4 py-2 text-sm font-semibold disabled:opacity-60"
+                >
+                  {submitting ? 'Posting...' : 'Publish post'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

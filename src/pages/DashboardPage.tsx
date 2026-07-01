@@ -5,11 +5,20 @@ import AppHeader from '../components/AppHeader';
 import Sidebar from '../components/Sidebar';
 import { supabase, Alert } from '../lib/supabase';
 
+import { Language, useTranslation } from '../lib/i18n';
+
 interface Props {
   onNavigate: (page: string) => void;
+  language?: Language;
+  setLanguage?: (lang: Language) => void;
 }
 
 export default function DashboardPage({ onNavigate }: Props) {
+  const { t } = useTranslation('dashboard');
+  useTranslation('common');
+
+
+
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [healthScore] = useState(92);
 
@@ -43,7 +52,8 @@ export default function DashboardPage({ onNavigate }: Props) {
               {/* Overall Farm Health */}
               <div className="card-dark rounded-xl p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-xs text-white/60 font-medium">Overall Farm Health</p>
+                  <p className="text-xs text-white/60 font-medium">{t('overallFarmHealth', 'Overall Farm Health')}</p>
+
                   <span className="text-[9px] font-mono bg-neon-green/15 text-neon-green border border-neon-green/25 rounded px-1.5 py-0.5 uppercase tracking-widest">eco</span>
                 </div>
                 <div className="flex items-end gap-2 mb-2">
@@ -57,7 +67,8 @@ export default function DashboardPage({ onNavigate }: Props) {
 
               {/* Recent Alerts */}
               <div className="card-dark rounded-xl p-4 flex-1">
-                <p className="text-xs text-white/60 font-medium mb-3">Recent Alerts</p>
+                <p className="text-xs text-white/60 font-medium mb-3">{t('recentAlerts', 'Recent Alerts')}</p>
+
                 <div className="flex flex-col gap-2">
                   {alerts.length === 0 ? (
                     <p className="text-xs text-white/30 font-mono">Loading alerts...</p>
@@ -119,7 +130,8 @@ export default function DashboardPage({ onNavigate }: Props) {
                     <div className="flex items-center gap-2 mb-2">
                       <Brain size={14} className="text-neon-green" />
                       <span className="text-[10px] font-mono text-neon-green uppercase tracking-widest">psychology</span>
-                      <span className="text-xs text-white font-medium">AI Insights</span>
+                      <span className="text-xs text-white font-medium">{t('aiInsights', 'AI Insights')}</span>
+
                     </div>
                     <p className="text-xs text-white/60 leading-relaxed">
                       Predicted yield increase of 12% if Sector 4 receives nitrogen treatment by Wednesday.
@@ -128,7 +140,8 @@ export default function DashboardPage({ onNavigate }: Props) {
                       onClick={() => onNavigate('insights')}
                       className="mt-3 text-[10px] font-mono text-neon-green/70 border border-neon-green/25 rounded px-3 py-1.5 hover:bg-neon-green/10 transition-colors uppercase tracking-widest"
                     >
-                      View Full Report
+                      {t('viewFullReport', 'View Full Report')}
+
                     </button>
                   </div>
                 </div>
@@ -143,7 +156,8 @@ export default function DashboardPage({ onNavigate }: Props) {
             style={{ boxShadow: '0 0 30px rgba(57,211,83,0.25)' }}
           >
             <ScanLine size={16} />
-            New 3D Scan
+            {t('new3dScan', 'New 3D Scan')}
+
           </button>
         </main>
       </div>

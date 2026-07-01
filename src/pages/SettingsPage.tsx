@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pencil, Download, RefreshCw, Shield, Bell, TrendingUp, Zap } from 'lucide-react';
 import AppHeader from '../components/AppHeader';
 import Sidebar from '../components/Sidebar';
+import { useAuth } from '../context/AuthContext';
+
 
 interface Props {
   onNavigate: (page: string) => void;
@@ -11,6 +13,7 @@ interface ToggleProps {
   on: boolean;
   onChange: () => void;
 }
+
 
 function Toggle({ on, onChange }: ToggleProps) {
   return (
@@ -25,9 +28,28 @@ function Toggle({ on, onChange }: ToggleProps) {
 }
 
 export default function SettingsPage({ onNavigate }: Props) {
+  const { user, updateProfile } = useAuth();
+
   const [criticalAlerts, setCriticalAlerts] = useState(true);
   const [weeklyReports, setWeeklyReports] = useState(true);
   const [globalMarket, setGlobalMarket] = useState(false);
+
+  const [editMode, setEditMode] = useState(false);
+  const [savingProfile, setSavingProfile] = useState(false);
+  const [profileFullName, setProfileFullName] = useState('');
+  const [profileAvatarUrl, setProfileAvatarUrl] = useState<string>('');
+
+  useEffect(() => {
+    if (!user) return;
+    setProfileFullName(user.full_name ?? '');
+    setProfileAvatarUrl(user.avatar_url ?? '');
+  }, [user]);
+
+  const [pwdMode, setPwdMode] = useState(false);
+  const [pwdBusy, setPwdBusy] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
 
   const recentActivity = [
     { icon: '🔧', title: 'Scanner Node Calibration', sub: 'Completed 3 hours ago · Sector 7G' },
@@ -47,10 +69,13 @@ export default function SettingsPage({ onNavigate }: Props) {
           <div className="card-dark rounded-xl p-5 flex items-center gap-6">
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-neon-green/50" style={{ boxShadow: '0 0 20px rgba(57,211,83,0.3)' }}>
+              <div
+                className="w-20 h-20 rounded-full overflow-hidden border-2 border-neon-green/50"
+                style={{ boxShadow: '0 0 20px rgba(57,211,83,0.3)' }}
+              >
                 <img
-                  src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=160"
-                  alt="Marcus Thorne"
+                  src={profileAvatarUrl || 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=160'}
+                  alt="Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -63,9 +88,13 @@ export default function SettingsPage({ onNavigate }: Props) {
             <div className="flex-1 min-w-0">
               <div className="flex items-start gap-3 flex-wrap">
                 <div>
-                  <h2 className="text-2xl font-bold text-white leading-tight">Marcus</h2>
-                  <h2 className="text-2xl font-bold text-white leading-tight">Thorne</h2>
-                  <p className="text-xs text-white/45 mt-0.5">m.thorne@agrifuture.io</p>
+                  <h2 className="text-2xl font-bold text-white leading-tight">
+                    {profileFullName ? profileFullName.split(' ')[0] : '—'}
+                  </h2>
+                  <h2 className="text-2xl font-bold text-white leading-tight">
+                    {profileFullName ? profileFullName.split(' ').slice(1).join(' ') : ''}
+                  </h2>
+                  <p className="text-xs text-white/45 mt-0.5">{user?.email ?? '—'}</p>
                 </div>
                 <div className="mt-1">
                   <span className="inline-flex items-center gap-1.5 bg-neon-green/10 border border-neon-green/30 rounded-full px-3 py-1">
@@ -88,12 +117,27 @@ export default function SettingsPage({ onNavigate }: Props) {
 
             {/* Action buttons */}
             <div className="flex flex-col gap-2 flex-shrink-0">
-              <button className="neon-btn px-4 py-2 rounded-lg flex items-center gap-2 text-xs whitespace-nowrap">
+
+              <button
+                onClick={() => {
+                  setEditMode(true);
+                  setPwdMode(false);
+                }}
+                className="neon-btn px-4 py-2 rounded-lg flex items-center gap-2 text-xs whitespace-nowrap"
+              >
                 <Pencil size={12} /> Edit Profile
               </button>
-              <button className="outline-btn px-4 py-2 rounded-lg flex items-center gap-2 text-xs whitespace-nowrap">
+              <button
+                className="outline-btn px-4 py-2 rounded-lg flex items-center gap-2 text-xs whitespace-nowrap"
+                onClick={() => {
+                  // TODO: wire to farm export endpoint
+                  // Placeholder for now
+                  window.alert('Export Farm Data is not wired yet.');
+                }}
+              >
                 <Download size={12} className="text-neon-green" /> Export Farm Data
               </button>
+
               <button
                 onClick={() => onNavigate('pricing')}
                 className="px-4 py-2 rounded-lg flex items-center gap-2 text-xs whitespace-nowrap transition-all"
@@ -104,8 +148,159 @@ export default function SettingsPage({ onNavigate }: Props) {
             </div>
           </div>
 
+          {/* Edit Profile / Change Password modal */}
+          {(editMode || pwdMode) && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+              <div className="w-full max-w-lg card-dark rounded-xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-white">
+                    {editMode ? 'Edit Profile' : 'Change Password'}
+                  </h3>
+                  <button
+                    onClick={() => {
+                      setEditMode(false);
+                      setPwdMode(false);
+                    }}
+                    className="outline-btn px-3 py-1.5 rounded-lg text-[10px] font-mono whitespace-nowrap"
+                  >
+                    Close
+                  </button>
+                </div>
+
+                {editMode && (
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">Full name</p>
+                      <input
+                        value={profileFullName}
+                        onChange={(e) => setProfileFullName(e.target.value)}
+                        className="w-full bg-forest-800/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/70 outline-none focus:border-neon-green/30 transition-colors"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">Upload profile image</p>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="w-full bg-forest-800/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/70 outline-none focus:border-neon-green/30 transition-colors"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+
+                          const localUrl = URL.createObjectURL(file);
+                          setProfileAvatarUrl(localUrl);
+                        }}
+                      />
+
+
+                      <p className="text-[10px] text-white/35 mt-1">
+                        Image preview and save stay local on this device.
+                      </p>
+                    </div>
+
+                    <button
+                      disabled={savingProfile}
+                      onClick={async () => {
+                        setSavingProfile(true);
+                        try {
+                          await updateProfile({
+                            full_name: profileFullName,
+                            avatar_url: profileAvatarUrl || null,
+                          });
+                          setEditMode(false);
+                        } catch (e: any) {
+                          window.alert(e?.message ?? 'Failed to update profile');
+                        } finally {
+                          setSavingProfile(false);
+                        }
+                      }}
+                      className="neon-btn w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-xs whitespace-nowrap"
+                    >
+                      {savingProfile ? 'Saving...' : 'Save'}
+                    </button>
+                  </div>
+                )}
+
+                {pwdMode && (
+                  <div className="flex flex-col gap-3">
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">Local password update</p>
+                      <p className="text-[10px] text-white/35 mb-2">
+                        This demo keeps the change in the current browser session only.
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">Email</p>
+                      <input
+                        value={user?.email ?? ''}
+                        readOnly
+                        className="w-full bg-forest-800/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/70 outline-none focus:border-neon-green/30 transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">New password</p>
+                      <input
+                        type="password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        className="w-full bg-forest-800/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/70 outline-none focus:border-neon-green/30 transition-colors"
+                        placeholder="At least 8 chars + rules"
+                      />
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-white/70 mb-1">Confirm new password</p>
+                      <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="w-full bg-forest-800/60 border border-white/10 rounded-lg px-3 py-2 text-xs text-white/70 outline-none focus:border-neon-green/30 transition-colors"
+                        placeholder="Repeat new password"
+                      />
+                    </div>
+
+                    <button
+                      disabled={pwdBusy}
+                      onClick={async () => {
+                        setPwdBusy(true);
+                        try {
+                          if (!newPassword || newPassword.length < 4) {
+                            throw new Error('Use at least 4 characters.');
+                          }
+                          if (newPassword !== confirmPassword) {
+                            throw new Error('Passwords do not match.');
+                          }
+                          setPwdMode(false);
+                          setNewPassword('');
+                          setConfirmPassword('');
+                          window.alert('Password updated locally.');
+                        } catch (e: any) {
+                          window.alert(e?.message ?? 'Failed to update password');
+                        } finally {
+                          setPwdBusy(false);
+                        }
+                      }}
+                      className="neon-btn w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-xs whitespace-nowrap"
+                    >
+                      {pwdBusy ? 'Saving...' : 'Save Password'}
+                    </button>
+
+                    <p className="text-[10px] text-white/35">
+                      Saved locally in this browser.
+                    </p>
+                  </div>
+                )}
+
+              </div>
+            </div>
+          )}
+
           {/* Two columns */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
             {/* Left */}
             <div className="flex flex-col gap-4">
               {/* Farm Stats */}
@@ -179,8 +374,17 @@ export default function SettingsPage({ onNavigate }: Props) {
                       <p className="text-[10px] text-white/35 mt-0.5">Update your security credentials regularly</p>
                     </div>
                   </div>
-                  <button className="outline-btn px-3 py-1.5 rounded-lg text-[10px] font-mono whitespace-nowrap ml-3">Update</button>
+                  <button
+                    onClick={() => {
+                      setPwdMode(true);
+                      setEditMode(false);
+                    }}
+                    className="outline-btn px-3 py-1.5 rounded-lg text-[10px] font-mono whitespace-nowrap ml-3"
+                  >
+                    Update
+                  </button>
                 </div>
+
 
                 {/* 2FA */}
                 <div className="flex items-center justify-between py-3.5 border-b border-white/5">

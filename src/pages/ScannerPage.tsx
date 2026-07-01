@@ -1,4 +1,14 @@
 import { useMemo, useState } from 'react';
+import { useTranslation, type Language } from '../lib/i18n';
+
+function languageToBackend(language: Language): Language {
+  // backend expects same Language union for now
+  return language;
+}
+
+
+
+
 import {
   AlertTriangle,
   CheckCircle2,
@@ -55,19 +65,36 @@ function riskToUi(risk?: RiskLevel) {
   };
 }
 
-function phaseDefault(idx: 1 | 2 | 3 | 4): RoadmapPhase {
+function phaseDefault(idx: 1 | 2 | 3 | 4, language: Language): RoadmapPhase {
+
+
+
+  // Fallback titles/actions for phases when backend doesn't provide them.
+  // (You can fully translate these later by adding keys to i18n.ts under `scanner`.)
   const titles: Record<1 | 2 | 3 | 4, string> = {
-    1: 'Immediate Containment',
-    2: 'Targeted Eradication',
-    3: 'Recovery',
-    4: 'Future Prevention',
+    1: language === 'hi' ? 'तुरंत नियंत्रण' : 'Immediate Containment',
+    2: language === 'hi' ? 'लक्षित उन्मूलन' : 'Targeted Eradication',
+    3: language === 'hi' ? 'रिकवरी' : 'Recovery',
+    4: language === 'hi' ? 'भविष्य की रोकथाम' : 'Future Prevention',
   };
 
   const actions: Record<1 | 2 | 3 | 4, string> = {
-    1: 'Step-wise: (1) Isolate the affected plant/area. (2) Remove heavily diseased leaves. (3) Clean tools and reduce plant-to-plant contact to limit spread.',
-    2: 'Step-wise: (1) Identify symptom progression zones (hotspots). (2) Apply treatment targeted to the likely disease stage. (3) Re-check after 48–72 hours and adjust based on response.',
-    3: 'Step-wise: (1) Stabilize irrigation and soil conditions. (2) Support regrowth with balanced nutrition. (3) Monitor new leaf emergence and remove any regrowth that shows recurrence.',
-    4: 'Step-wise: (1) Establish a monitoring schedule (weekly photos + notes). (2) Improve preventative hygiene + resistant cultivar strategy. (3) Use weather/humidity-driven alerts to intervene early.',
+    1:
+      language === 'hi'
+        ? 'कदम-दर-कदम: (1) प्रभावित पौधा/क्षेत्र अलग करें। (2) अधिक संक्रमित पत्तियाँ हटाएँ। (3) औज़ार साफ़ करें और फैलाव रोकने के लिए पौधा-से-पौधा संपर्क कम करें।'
+        : 'Step-wise: (1) Isolate the affected plant/area. (2) Remove heavily diseased leaves. (3) Clean tools and reduce plant-to-plant contact to limit spread.',
+    2:
+      language === 'hi'
+        ? 'कदम-दर-कदम: (1) लक्षणों के बढ़ने वाले क्षेत्र (हॉटस्पॉट) पहचानें। (2) रोग की संभावित अवस्था के अनुसार लक्षित उपचार करें। (3) 48–72 घंटे बाद फिर जाँचें और प्रतिक्रिया के आधार पर बदलाव करें।'
+        : 'Step-wise: (1) Identify symptom progression zones (hotspots). (2) Apply treatment targeted to the likely disease stage. (3) Re-check after 48–72 hours and adjust based on response.',
+    3:
+      language === 'hi'
+        ? 'कदम-दर-कदम: (1) सिंचाई और मिट्टी की स्थिति स्थिर रखें। (2) संतुलित पोषण के साथ फिर से बढ़ने में मदद करें। (3) नई पत्तियों के निकलने पर नज़र रखें और दोबारा उगने पर हटाएँ।'
+        : 'Step-wise: (1) Stabilize irrigation and soil conditions. (2) Support regrowth with balanced nutrition. (3) Monitor new leaf emergence and remove any regrowth that shows recurrence.',
+    4:
+      language === 'hi'
+        ? 'कदम-दर-कदम: (1) निगरानी शेड्यूल तय करें (साप्ताहिक फोटो + नोट्स)। (2) रोकथाम स्वच्छता बढ़ाएँ और प्रतिरोधी किस्म रणनीति अपनाएँ। (3) मौसम/नमी आधारित अलर्ट से जल्दी हस्तक्षेप करें।'
+        : 'Step-wise: (1) Establish a monitoring schedule (weekly photos + notes). (2) Improve preventative hygiene + resistant cultivar strategy. (3) Use weather/humidity-driven alerts to intervene early.',
   };
 
   return {
@@ -78,10 +105,12 @@ function phaseDefault(idx: 1 | 2 | 3 | 4): RoadmapPhase {
 }
 
 
+
 function RoadmapSteps({ phases }: { phases: RoadmapPhase[] }) {
   const normalized = useMemo(() => {
     const byPhase = new Map(phases.map((p) => [p.phase, p] as const));
-    return [1, 2, 3, 4].map((n) => byPhase.get(n as 1 | 2 | 3 | 4) ?? phaseDefault(n as 1 | 2 | 3 | 4));
+return [1, 2, 3, 4].map((n) => byPhase.get(n as 1 | 2 | 3 | 4) ?? phaseDefault(n as 1 | 2 | 3 | 4, 'en' as Language));
+
   }, [phases]);
 
   return (
@@ -149,7 +178,10 @@ export default function ScannerPage({ onNavigate }: Props) {
   const [soilResistance, setSoilResistance] = useState<number>(68);
   const [humidity, setHumidity] = useState<number>(82);
   const [temperature, setTemperature] = useState<number>(24);
-  const [language] = useState<'en' | 'hi'>('en');
+  const { currentLanguage: language } = useTranslation('scanner');
+  const backendLanguage = languageToBackend(language);
+
+
 
 
   const [loading, setLoading] = useState(false);
@@ -160,8 +192,16 @@ export default function ScannerPage({ onNavigate }: Props) {
   const riskUi = useMemo(() => riskToUi(result?.roadmap?.risk_level), [result]);
 
   const phases = useMemo(() => {
-    return result?.roadmap?.phases ?? [phaseDefault(1), phaseDefault(2), phaseDefault(3), phaseDefault(4)];
-  }, [result]);
+    return (
+      result?.roadmap?.phases ?? [
+        phaseDefault(1, language),
+        phaseDefault(2, language),
+        phaseDefault(3, language),
+        phaseDefault(4, language),
+      ]
+    );
+  }, [result, language]);
+
 
   const onPick = (file: File | null) => {
     setError(null);
@@ -191,8 +231,9 @@ export default function ScannerPage({ onNavigate }: Props) {
             soil_resistance: soilResistance,
             humidity,
             temperature,
-            language,
+            language: backendLanguage,
           });
+
 
 
           if (debug.ok && debug.response) {
@@ -500,25 +541,151 @@ export default function ScannerPage({ onNavigate }: Props) {
                 </div>
               </div>
 
-              {/* Quick download button */}
+              {/* Quick download button (PDF) */}
               <button
                 className="outline-btn w-full py-3 rounded-xl flex items-center justify-center gap-2 text-sm disabled:opacity-60"
                 disabled={!result}
-                onClick={() => {
-                  // Optional: later we can export from backend. For now just download current info.
+                onClick={async () => {
                   if (!result) return;
-                  const payload = JSON.stringify(result, null, 2);
-                  const blob = new Blob([payload], { type: 'application/json' });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = `scan-report-${Date.now()}.json`;
-                  a.click();
-                  URL.revokeObjectURL(url);
+
+                  // Lazy-load to avoid hard dependency issues at startup.
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  const [{ jsPDF: jsPDFNamed, default: jsPDFDefault }, html2canvasModule] = await Promise.all([
+                    import('jspdf' as any).catch(() => null),
+                    import('html2canvas' as any).catch(() => null),
+                  ]);
+
+                  const jsPDF = (jsPDFNamed ?? jsPDFDefault) as any;
+                  const html2canvas = (html2canvasModule?.default ?? html2canvasModule) as any;
+
+                  if (!jsPDF || !html2canvas) {
+                    setError('PDF libraries not available. Please run: npm install jspdf html2canvas');
+                    return;
+                  }
+
+const roadmapSteps = phases ?? [phaseDefault(1, language), phaseDefault(2, language), phaseDefault(3, language), phaseDefault(4, language)];
+
+
+                  // Create a PDF-only, farmer-friendly roadmap “visual cards” layout.
+                  // We render to an offscreen container so html2canvas can capture it.
+                  const temp = document.createElement('div');
+                  temp.style.position = 'fixed';
+                  temp.style.left = '-100000px';
+                  temp.style.top = '0';
+                  temp.style.width = '820px';
+                  temp.style.background = '#0b1b13';
+                  temp.style.padding = '24px';
+                  temp.style.fontFamily = 'Arial, sans-serif';
+                  temp.innerHTML = `
+                    <div style="color:#ffffff">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                        <div>
+                          <div style="font-size:18px;font-weight:800">Agrilens Scan Report</div>
+                          <div style="font-size:12px;opacity:0.8;margin-top:4px">Generated for farmer-friendly guidance</div>
+                        </div>
+                        <div style="text-align:right;min-width:160px">
+                          <div style="font-size:12px;opacity:0.8">Confidence</div>
+                          <div style="font-size:22px;font-weight:800">${Math.round(result.confidence * 100)}%</div>
+                        </div>
+                      </div>
+
+                      <div style="border:1px solid rgba(0,255,120,0.25);border-radius:14px;padding:14px 14px;margin-bottom:16px">
+                        <div style="font-size:12px;opacity:0.75;text-transform:uppercase;letter-spacing:1px">Diagnosis</div>
+                        <div style="font-size:20px;font-weight:800;margin-top:6px">${result.disease_name}</div>
+                        <div style="font-size:12px;opacity:0.85;margin-top:8px;line-height:1.35">${(result.ai_insight ?? '').replace(/</g,'<').replace(/>/g,'>')}</div>
+                      </div>
+
+                      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+                        <div style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px">
+                          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.7px">Soil resistance</div>
+                          <div style="font-size:16px;font-weight:800;margin-top:6px">${result.soil?.soil_resistance ?? soilResistance}%</div>
+                        </div>
+                        <div style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px">
+                          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.7px">Humidity</div>
+                          <div style="font-size:16px;font-weight:800;margin-top:6px">${result.humidity ?? humidity}%</div>
+                        </div>
+                        <div style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px">
+                          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.7px">Temperature</div>
+                          <div style="font-size:16px;font-weight:800;margin-top:6px">${result.temperature ?? temperature}°C</div>
+                        </div>
+                      </div>
+
+                      <div style="margin-bottom:10px">
+                        <div style="font-size:14px;font-weight:800">Roadmap to Recovery (Farmer Steps)</div>
+                        <div style="font-size:12px;opacity:0.75;margin-top:4px">Follow in order. Re-check after actions.</div>
+                      </div>
+
+                      <div style="display:grid;grid-template-columns:1fr;gap:10px">
+                        ${roadmapSteps.map((p) => {
+                          const num = p.phase;
+                          const cardColor = num === 1 ? 'rgba(74,222,128,0.15)' : num === 2 ? 'rgba(251,191,36,0.15)' : num === 3 ? 'rgba(57,211,83,0.12)' : 'rgba(239,68,68,0.10)';
+                          const borderColor = num === 1 ? 'rgba(74,222,128,0.35)' : num === 2 ? 'rgba(251,191,36,0.35)' : num === 3 ? 'rgba(57,211,83,0.25)' : 'rgba(239,68,68,0.25)';
+
+                          return `
+                            <div style="border:1px solid ${borderColor};background:${cardColor};border-radius:14px;padding:12px">
+                              <div style="display:flex;gap:10px;align-items:flex-start">
+                                <div style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,255,140,0.12);border:1px solid rgba(0,255,140,0.25);font-weight:900">${num}</div>
+                                <div style="flex:1">
+                                  <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.8px">Phase ${num}</div>
+                                  <div style="font-size:16px;font-weight:900;margin-top:4px">${p.title}</div>
+                                  <div style="font-size:12px;opacity:0.9;margin-top:8px;line-height:1.35">${p.action}</div>
+                                </div>
+                              </div>
+                            </div>
+                          `;
+                        }).join('')}
+                      </div>
+
+                      ${result.explainable_ai?.heatmap_base64 ? `
+                        <div style="margin-top:16px">
+                          <div style="font-size:14px;font-weight:800;margin-bottom:8px">Grad-CAM Heatmap</div>
+                          <img style="width:100%;border-radius:14px" src="data:image/png;base64,${result.explainable_ai.heatmap_base64}" />
+                          <div style="font-size:11px;opacity:0.7;margin-top:6px">Heatmap highlights leaf regions that influenced the prediction.</div>
+                        </div>
+                      ` : ''}
+
+                      <div style="margin-top:14px;font-size:10px;opacity:0.7">
+                        Note: This report provides guidance based on image + environment inputs.
+                      </div>
+                    </div>
+                  `;
+
+                  document.body.appendChild(temp);
+
+                  try {
+                    const canvas = await html2canvas(temp, { scale: 2, backgroundColor: '#0b1b13' });
+                    const imgData = canvas.toDataURL('image/png');
+
+                    const pdf = new jsPDF({ orientation: 'p', unit: 'pt', format: 'a4' });
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const pageHeight = pdf.internal.pageSize.getHeight();
+
+                    // Fit image to page width, then add pages if needed.
+                    const imgProps = pdf.getImageProperties(imgData);
+                    const imgW = pageWidth;
+                    const imgH = (imgProps.height * imgW) / imgProps.width;
+
+                    let heightLeft = imgH;
+                    let position = 0;
+
+                    pdf.addImage(imgData, 'PNG', 0, position, imgW, imgH, undefined, 'FAST');
+                    heightLeft -= pageHeight;
+
+                    while (heightLeft > 0) {
+                      position -= pageHeight;
+                      pdf.addPage();
+                      pdf.addImage(imgData, 'PNG', 0, position, imgW, imgH, undefined, 'FAST');
+                      heightLeft -= pageHeight;
+                    }
+
+                    pdf.save(`scan-report-${Date.now()}.pdf`);
+                  } finally {
+                    temp.remove();
+                  }
                 }}
               >
                 <Download size={15} className="text-neon-green" />
-                Download Report
+                Download Report (PDF)
               </button>
             </div>
           </div>

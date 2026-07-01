@@ -5,16 +5,16 @@ import sys
 import traceback
 from io import BytesIO
 from pathlib import Path
-from typing import List, Literal, Optional
+from typing import Literal, Optional
 
 import numpy as np
 import torch
 import torch.nn.functional as F
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from PIL import Image
-from torchvision import transforms
 
+from PIL import Image, ImageOps
+from torchvision import transforms
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 MODEL_SRC_DIR = (
@@ -44,59 +44,67 @@ from model import AgroShieldHybridModel
 # Your checkpoint was trained with a specific label index ordering (usually from
 # torchvision.datasets.ImageFolder(class folders sorted lexicographically)).
 # If we map output indices to the wrong CLASS_LABELS order, the UI will show
-# incorrect disease names (e.g., Apple scab -> Soybean healthy).
-#
-# To fix this without retraining, we allow an external `classes.json` file
-# placed next to your `.pth` checkpoint in: backend/backend/agroshield_hybrid/
-# Example: a JSON array like ["Apple___Apple_scab", ...]
+# incorrect disease names.
 
 import json
 
-# Default fallback labels (used only if classes JSON is missing/invalid).
-# IMPORTANT: your model checkpoint expects an exact index->label mapping.
 DEFAULT_CLASS_LABELS: list[str] = [
-    "Apple___Apple_scab", "Apple___Black_rot", "Apple___Cedar_apple_rust", "Apple___Healthy",
+    "Apple___Apple_scab",
+    "Apple___Black_rot",
+    "Apple___Cedar_apple_rust",
+    "Apple___Healthy",
     "Blueberry___Healthy",
-    "Cherry___Powdery_mildew", "Cherry___Healthy",
-    "Corn___Cercospora_leaf_spot Gray_leaf_spot", "Corn___Common_rust", "Corn___Northern_Leaf_Blight", "Corn___Healthy",
-    "Grape___Black_rot", "Grape___Esca_(Black_Measles)", "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)", "Grape___Healthy",
+    "Cherry___Powdery_mildew",
+    "Cherry___Healthy",
+    "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+    "Corn___Common_rust",
+    "Corn___Northern_Leaf_Blight",
+    "Corn___Healthy",
+    "Grape___Black_rot",
+    "Grape___Esca_(Black_Measles)",
+    "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+    "Grape___Healthy",
     "Orange___Haunglongbing_(Citrus_greening)",
-    "Peach___Bacterial_spot", "Peach___Healthy",
-    "Pepper,_bell___Bacterial_spot", "Pepper,_bell___Healthy",
-    "Potato___Early_blight", "Potato___Late_blight", "Potato___Healthy",
+    "Peach___Bacterial_spot",
+    "Peach___Healthy",
+    "Pepper,_bell___Bacterial_spot",
+    "Pepper,_bell___Healthy",
+    "Potato___Early_blight",
+    "Potato___Late_blight",
+    "Potato___Healthy",
     "Raspberry___Healthy",
     "Soybeans___Healthy",
     "Squash___Powdery_mildew",
-    "Strawberry___Leaf_scorch", "Strawberry___Healthy",
-    "Tomato___Bacterial_spot", "Tomato___Early_blight", "Tomato___Late_blight",
-    "Tomato___Leaf_Mold", "Tomato___Septoria_leaf_spot", "Tomato___Spider_mites_Two-spotted_spider_mite",
-    "Tomato___Target_Spot", "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
-    "Tomato___Tomato_mosaic_virus", "Tomato___Healthy",
+    "Strawberry___Leaf_scorch",
+    "Strawberry___Healthy",
+    "Tomato___Bacterial_spot",
+    "Tomato___Early_blight",
+    "Tomato___Late_blight",
+    "Tomato___Leaf_Mold",
+    "Tomato___Septoria_leaf_spot",
+    "Tomato___Spider_mites_Two-spotted_spider_mite",
+    "Tomato___Target_Spot",
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+    "Tomato___Tomato_mosaic_virus",
+    "Tomato___Healthy",
 ]
 
-
-# Prefer externally provided class mapping to avoid index->label mismatch.
-# Your file is sometimes named `classes (1).json` (object/map format), so we support multiple shapes.
 CLASS_LABELS: list[str] = DEFAULT_CLASS_LABELS
 
 candidate_class_files = [
-    # Prefer the real mapping file used in training.
     WEIGHTS_DIR / "class_to_idx.json",
     WEIGHTS_DIR / "classes (1).json",
-    # Fallback to other possible names if they contain a valid mapping.
     WEIGHTS_DIR / "classes.json",
 ]
 
 
-
 def _coerce_labels_from_loaded(loaded: object) -> list[str] | None:
-    # 1) JSON array: ["label0", "label1", ...]
     if isinstance(loaded, list) and all(isinstance(x, str) for x in loaded):
         return loaded
 
     if isinstance(loaded, dict):
-        # 2) JSON object where keys are indices: {"0": "Apple___Apple_scab", "1": "..."}
         idx_label_pairs: list[tuple[int, str]] = []
+
         all_value_str = all(isinstance(v, str) for v in loaded.values())
         if all_value_str:
             ok = True
@@ -111,9 +119,6 @@ def _coerce_labels_from_loaded(loaded: object) -> list[str] | None:
                 idx_label_pairs.sort(key=lambda t: t[0])
                 return [label for _, label in idx_label_pairs]
 
-        # 3) JSON object where keys are class labels and values are indices:
-        #    {"Apple___Apple_scab": 0, "Apple___Black_rot": 1, ...}
-        #    Convert to idx -> label ordering.
         all_value_int = all(isinstance(v, int) for v in loaded.values())
         if all_value_int:
             idx_label_pairs = []
@@ -137,8 +142,10 @@ for classes_json_path in candidate_class_files:
         if coerced and len(coerced) > 0:
             CLASS_LABELS = coerced
             loaded_any = True
-            print(f"[agroshield] Loaded CLASS_LABELS from: {classes_json_path}")
-            print(f"[agroshield] CLASS_LABELS first={CLASS_LABELS[0]} last={CLASS_LABELS[-1]} len={len(CLASS_LABELS)}")
+            print(
+                f"[agroshield] Loaded CLASS_LABELS from: {classes_json_path} "
+                f"len={len(CLASS_LABELS)}"
+            )
             break
         else:
             print(f"[agroshield] classes file loaded but had unsupported format: {classes_json_path}")
@@ -150,11 +157,10 @@ if not loaded_any:
 
 
 NUM_CLASSES = len(CLASS_LABELS)
-
-
 RiskLevel = Literal["LOW", "MODERATE", "HIGH", "CRITICAL"]
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 # ---------------------------------------------------------------------------
 # Model loading
@@ -186,11 +192,19 @@ else:
     )
 
 
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
+transform = transforms.Compose(
+    [
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ]
+)
+
+
+def _build_tta_batch(pil_img: Image.Image) -> tuple[torch.Tensor, torch.Tensor]:
+    base_tensor = transform(pil_img).unsqueeze(0).to(device)
+    flipped_tensor = torch.flip(base_tensor, dims=[3])
+    return base_tensor, torch.cat((base_tensor, flipped_tensor), dim=0)
 
 
 # ---------------------------------------------------------------------------
@@ -236,11 +250,12 @@ class GradCAM:
 # ---------------------------------------------------------------------------
 # Phase / risk helpers
 # ---------------------------------------------------------------------------
-def _clamp(n: float, lo: float, hi: float) -> float:
-    return max(lo, min(hi, n))
 
-
-def _risk_from_env(humidity: Optional[float], soil_resistance: Optional[float], temperature: Optional[float]) -> RiskLevel:
+def _risk_from_env(
+    humidity: Optional[float],
+    soil_resistance: Optional[float],
+    temperature: Optional[float],
+) -> RiskLevel:
     h = humidity if humidity is not None else 0
     if h > 80:
         return "CRITICAL"
@@ -283,15 +298,11 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.get("/health")
 def health() -> dict:
@@ -311,7 +322,6 @@ def predict(
     temperature: Optional[float] = Form(None),
     language: Optional[str] = Form(None),
 ):
-
     if not image:
         raise HTTPException(status_code=400, detail="Missing image")
 
@@ -321,17 +331,12 @@ def predict(
 
     language = (language or "en").lower()
     try:
-        pil_img = Image.open(BytesIO(content)).convert("RGB")
-
+        pil_img = ImageOps.exif_transpose(Image.open(BytesIO(content))).convert("RGB")
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid image")
 
-    # ------------------------------------------------------------------
-    # Real model inference (fall back to stub if model not loaded)
-    # ------------------------------------------------------------------
     if model is None:
         disease_name = "Stub Disease (model weights not loaded)"
-        # confidence normalized to [0,1]
         confidence = 0.9
         risk = _risk_from_env(humidity, soil_resistance, temperature)
         heatmap_base64 = (
@@ -342,36 +347,29 @@ def predict(
             f"Place a .pth file in {WEIGHTS_DIR} to enable real inference."
         )
         top5 = []
-
     else:
         try:
-            img_tensor = transform(pil_img).unsqueeze(0).to(device)
+            img_tensor, tta_tensor = _build_tta_batch(pil_img)
 
-            # Grad-CAM on ConvNeXt
             gradcam = GradCAM(model.convnext, "norm")
             model.zero_grad()
-            output = model(img_tensor)
-            probs = F.softmax(output, dim=1)
-            pred_class = output.argmax(dim=1).item()
-            # confidence normalized to [0,1]
+            with torch.no_grad():
+                output = model(tta_tensor)
+                probs = F.softmax(output, dim=1).mean(dim=0, keepdim=True)
+            pred_class = probs.argmax(dim=1).item()
             confidence = float(probs[0, pred_class].item())
 
-            # Debug + return top-5 probabilities
             topk = torch.topk(probs[0], k=min(5, probs.shape[1]))
             topk_idx = topk.indices.tolist()
             topk_vals = topk.values.tolist()
-            print("[agroshield] top5:")
+
             top5 = []
             for idx, val in zip(topk_idx, topk_vals):
                 mapped = CLASS_LABELS[idx] if idx < len(CLASS_LABELS) else f"Class_{idx}"
-                pct = float(val) * 100.0
-                top5.append({"idx": idx, "label": mapped, "prob": pct / 100.0})
-                print(f"  {idx}: {mapped} -> {pct:.2f}%")
+                top5.append({"idx": idx, "label": mapped, "prob": float(val)})
 
             disease_name = CLASS_LABELS[pred_class] if pred_class < len(CLASS_LABELS) else f"Class_{pred_class}"
 
-
-            # Generate heatmap for the predicted class
             model.zero_grad()
             output = model(img_tensor)
             target = output[0, pred_class]
@@ -386,29 +384,21 @@ def predict(
 
             risk = _risk_from_env(humidity, soil_resistance, temperature)
 
-            # Farmer-friendly, multilingual-ready insight (default = English)
             def _insight_en() -> str:
                 return (
                     f"We identified: {disease_name}. "
-                    f"Confidence: {confidence:.1f}%. "
-                    f"{'This looks healthy—no disease signs detected.' if 'healthy' in disease_name else 'Signs of disease were detected. Use the heatmap to see the most affected leaf areas.'}"
+                    f"Confidence: {confidence * 100:.1f}%. "
+                    f"{'This looks healthy—no disease signs detected.' if 'healthy' in disease_name.lower() else 'Signs of disease were detected. Use the heatmap to see the most affected leaf areas.'}"
                 )
 
             def _insight_hinglish() -> str:
                 return (
                     f"Humein yeh beemari/healthy state mila: {disease_name}. "
-                    f"Confidence: {confidence:.1f}%. "
-                    f"{'Patti/plant healthy lag rahi hai—koi badi disease signs nazar nahi aaye.' if 'healthy' in disease_name else 'Disease ke signs mil rahe hain. Heatmap dekhein taaki zyada affected leaf areas samajh aa sake.'}"
+                    f"Confidence: {confidence * 100:.1f}%. "
+                    f"{'Patti/plant healthy lag rahi hai—koi badi disease signs nazar nahi aaye.' if 'healthy' in disease_name.lower() else 'Disease ke signs mil rahe hain. Heatmap dekhein taaki zyada affected leaf areas samajh aa sake.'}"
                 )
 
-            if language in ("hi", "hin", "hindi", "hinglish"):
-                ai_insight = _insight_hinglish()
-            else:
-                ai_insight = _insight_en()
-
-
-
-
+            ai_insight = _insight_hinglish() if language in ("hi", "hin", "hindi", "hinglish") else _insight_en()
 
         except Exception:
             traceback.print_exc()
@@ -419,25 +409,18 @@ def predict(
                 "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/xcAAgMBgQh8ZQAAAABJRU5ErkJggg=="
             )
             ai_insight = "An error occurred during model inference. Check the server logs for details."
+            top5 = []
 
     return {
         "disease_detected": "healthy" not in disease_name.lower(),
         "disease_name": disease_name,
-        # Standardized: confidence is in [0,1].
         "confidence": round(confidence, 2),
-        "top5": top5 if model is not None else [],
+        "top5": top5,
         "soil": {"soil_resistance": soil_resistance},
         "humidity": humidity,
         "temperature": temperature,
         "ai_insight": ai_insight,
-        "explainable_ai": {
-            "heatmap_base64": heatmap_base64,
-            "summary": "Grad-CAM heatmap highlighting regions that influenced the prediction.",
-        },
-        "roadmap": {
-            "risk_level": risk,
-            "phases": _phases_for_disease(disease_name),
-        },
+        "explainable_ai": {"heatmap_base64": heatmap_base64, "summary": "Grad-CAM heatmap highlighting regions that influenced the prediction."},
+        "roadmap": {"risk_level": risk, "phases": _phases_for_disease(disease_name)},
     }
-
 

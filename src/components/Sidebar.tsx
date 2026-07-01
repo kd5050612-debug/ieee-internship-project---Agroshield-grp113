@@ -1,4 +1,5 @@
 import { Leaf, LayoutDashboard, Dna, HeartPulse, Wheat, Brain, Settings, HelpCircle, ScanLine } from 'lucide-react';
+import { useTranslation } from '../lib/i18n';
 
 interface Props {
   activePage: string;
@@ -6,16 +7,30 @@ interface Props {
   showScanBtn?: boolean;
 }
 
-const navItems = [
-  { id: 'dashboard', icon: LayoutDashboard, label: 'dashboard', sub: 'Overview' },
-  { id: 'scanner', icon: Dna, label: 'biotech', sub: 'Live Scans' },
-  { id: 'treatment', icon: HeartPulse, label: 'healing', sub: 'Treatment Hub' },
-  { id: 'soil', icon: Wheat, label: 'grass', sub: 'Soil Health' },
-  { id: 'insights', icon: Brain, label: 'psychology', sub: 'AI Insights' },
-  { id: 'forum', icon: Brain, label: 'community', sub: 'Farmer Posts / Blogs' },
+type NavItem = {
+  id: string;
+  icon: any;
+  key: string;
+  subKey: string;
+  defaultLabel: string;
+  defaultSubLabel: string;
+};
+
+const navItems: NavItem[] = [
+  { id: 'dashboard', icon: LayoutDashboard, key: 'dashboard', subKey: 'overview', defaultLabel: 'Dashboard', defaultSubLabel: 'Overview' },
+  { id: 'scanner', icon: Dna, key: 'scanner', subKey: 'liveScans', defaultLabel: 'Scanner', defaultSubLabel: 'Live Scans' },
+  { id: 'treatment', icon: HeartPulse, key: 'treatment', subKey: 'treatmentHub', defaultLabel: 'Treatment', defaultSubLabel: 'Treatment Hub' },
+  { id: 'soil', icon: Wheat, key: 'soil', subKey: 'soilHealth', defaultLabel: 'Soil', defaultSubLabel: 'Soil Health' },
+  { id: 'insights', icon: Brain, key: 'insights', subKey: 'aiInsights', defaultLabel: 'Insights', defaultSubLabel: 'AI Insights' },
+  { id: 'forum', icon: Brain, key: 'forum', subKey: 'farmerPosts', defaultLabel: 'Community', defaultSubLabel: 'Farmer Posts' },
 ];
 
 export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) {
+  // Pull core namespaces out safely
+  const { t } = useTranslation('sidebar');
+  const { t: tCommon } = useTranslation('common');
+  const { t: tNav } = useTranslation('nav');
+
   return (
     <aside className="w-52 flex-shrink-0 flex flex-col bg-forest-900 border-r border-neon-green/10 min-h-full">
       {/* AI status */}
@@ -25,10 +40,14 @@ export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) 
             <Leaf size={14} className="text-neon-green" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-white leading-tight">AgriLens AI</p>
+            <p className="text-xs font-semibold text-white leading-tight">
+              {tCommon('appName', 'AgriLens 3D')}
+            </p>
             <div className="flex items-center gap-1 mt-0.5">
               <span className="status-dot" style={{ width: '5px', height: '5px' }} />
-              <span className="text-[9px] font-mono text-neon-green/70 uppercase tracking-wider">Ready for Analysis</span>
+              <span className="text-[9px] font-mono text-neon-green/70 uppercase tracking-wider">
+                {t('readyForAnalysis', 'Ready for analysis')}
+              </span>
             </div>
           </div>
         </div>
@@ -36,7 +55,7 @@ export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) 
 
       {/* Nav */}
       <nav className="flex-1 p-3 flex flex-col gap-0.5">
-        {navItems.map(({ id, icon: Icon, label, sub }) => (
+        {navItems.map(({ id, icon: Icon, key, subKey, defaultLabel, defaultSubLabel }) => (
           <button
             key={id}
             onClick={() => onNavigate(id)}
@@ -44,8 +63,8 @@ export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) 
           >
             <Icon size={15} className="flex-shrink-0" />
             <div>
-              <span className="font-mono text-[11px]">{label}</span>
-              <span className="text-[9px] text-white/30 ml-1.5">{sub}</span>
+              <span className="font-mono text-[11px]">{tNav(key, defaultLabel)}</span>
+              <span className="text-[9px] text-white/30 ml-1.5">{t(subKey, defaultSubLabel)}</span>
             </div>
           </button>
         ))}
@@ -58,13 +77,14 @@ export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) 
           className={`sidebar-item ${activePage === 'settings' ? 'active' : ''}`}
         >
           <Settings size={14} />
-          <span className="text-[11px] font-mono">settings</span>
-          <span className="text-[9px] text-white/30 ml-0.5">Settings</span>
+          <span className="text-[11px] font-mono">{tCommon('settings', 'Settings')}</span>
+          <span className="text-[9px] text-white/30 ml-0.5">{tCommon('settings', 'Settings')}</span>
         </button>
-        <button className="sidebar-item">
+        
+        <button onClick={() => onNavigate('support')} className="sidebar-item">
           <HelpCircle size={14} />
-          <span className="text-[11px] font-mono">help_center</span>
-          <span className="text-[9px] text-white/30 ml-0.5">Support</span>
+          <span className="text-[11px] font-mono">{tCommon('helpCenter', 'Help Center')}</span>
+          <span className="text-[9px] text-white/30 ml-0.5">{tCommon('support', 'Support')}</span>
         </button>
       </div>
 
@@ -76,7 +96,7 @@ export default function Sidebar({ activePage, onNavigate, showScanBtn }: Props) 
             className="neon-btn w-full py-2.5 rounded-xl flex items-center justify-center gap-2 text-xs font-semibold"
           >
             <ScanLine size={13} />
-            Start New Scan
+            {tCommon('startNewScan', 'Start New Scan')}
           </button>
         </div>
       )}

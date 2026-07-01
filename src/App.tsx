@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import LandingPage from './pages/LandingPage';
+
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ScannerPage from './pages/ScannerPage';
@@ -8,15 +10,16 @@ import SettingsPage from './pages/SettingsPage';
 import ForumPage from './pages/ForumPage';
 import PricingPage from './pages/PricingPage';
 import PlaceholderPage from './pages/PlaceholderPage';
-
 type Page =
   | 'landing' | 'login'
+
   | 'dashboard' | 'scanner' | 'diagnostic' | 'insights'
   | 'treatment' | 'soil' | 'map' | 'history'
   | 'settings' | 'forum' | 'pricing';
 
 export default function App() {
   const [page, setPage] = useState<Page>('landing');
+  // i18n state is managed inside pages/components via useI18n()
 
   const navigate = (target: string) => {
     const map: Record<string, Page> = {
@@ -44,12 +47,15 @@ export default function App() {
     case 'login':      return <LoginPage onNavigate={navigate} />;
     case 'dashboard':  return <DashboardPage onNavigate={navigate} />;
     case 'scanner':    return <ScannerPage onNavigate={navigate} />;
+
     case 'diagnostic':
     case 'insights':
     case 'history':    return <DiagnosticPage onNavigate={navigate} />;
     case 'settings':   return <SettingsPage onNavigate={navigate} />;
     case 'forum':      return <ForumPage onNavigate={navigate} />;
     case 'pricing':    return <PricingPage onNavigate={navigate} />;
+
+
     case 'treatment':
       return <PlaceholderPage title="Treatment Hub" description="Manage crop treatment protocols and fungicide schedules." onNavigate={navigate} activePage="treatment" />;
     case 'soil':
