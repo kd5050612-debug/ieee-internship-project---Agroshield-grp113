@@ -17,26 +17,20 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from PIL import Image, ImageOps
 from torchvision import transforms
-
 SCRIPT_DIR = Path(__file__).resolve().parent
-MODEL_SRC_DIR = (
-    SCRIPT_DIR.parent
-    / "backend"
-    / "dataset"
-    / "plantvillage"
-    / "ml_pipeline"
-    / "content"
-    / "AgroShield-AI-v2"
-    / "dataset"
-    / "plantvillage"
-    / "ml_pipeline"
-)
-WEIGHTS_DIR = SCRIPT_DIR.parent / "backend" / "agroshield_hybrid"
+
+# Go up to the root folder, then go straight into the ml_pipeline directory
+MODEL_SRC_DIR = SCRIPT_DIR.parent.parent / "dataset" / "plantvillage" / "ml_pipeline"
+WEIGHTS_DIR = SCRIPT_DIR.parent / "agroshield_hybrid"
 
 if MODEL_SRC_DIR.exists():
     sys.path.insert(0, str(MODEL_SRC_DIR))
+else:
+    # Fallback if structure varies slightly on the container
+    sys.path.insert(0, str(SCRIPT_DIR.parent.parent))
 
-from dataset.plantvillage.ml_pipeline.model import AgroShieldHybridModel
+# Import directly from the file name since the folder is now in sys.path
+from model import AgroShieldHybridModel
 
 
 # ---------------------------------------------------------------------------
