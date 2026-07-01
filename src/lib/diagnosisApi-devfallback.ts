@@ -45,14 +45,14 @@ export async function predictDiseaseDevFallback(
 
   return {
     disease_detected: true,
-    disease_name: 'Dev fallback disease (backend not reachable)',
+    disease_name: 'Backend unavailable',
     confidence: 0.5,
     soil: { soil_resistance },
     humidity,
     temperature,
-    ai_insight: 'Dev fallback response: backend /predict endpoint is not reachable. Replace with real FastAPI output.',
+    ai_insight: 'The backend service is unreachable or VITE_BACKEND_URL is not pointing to your deployed FastAPI instance. Update the backend URL in Vercel and redeploy.',
     explainable_ai: {
-      summary: 'Dev fallback heatmap unavailable.',
+      summary: 'Heatmap unavailable because the backend is not reachable.',
     },
     roadmap: {
       risk_level: riskLevel,

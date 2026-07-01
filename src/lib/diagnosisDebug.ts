@@ -5,8 +5,15 @@ export async function debugPredictDisease(
   payload?: PredictRequest
 ): Promise<{ ok: boolean; status?: number; body?: string; response?: PredictResponse; urlTried?: string }> {
   // Scanning backend only; independent from Supabase.
-  // If VITE_BACKEND_URL is not set, fall back to the same default used in diagnosisApi.ts.
-  const baseUrl = (import.meta.env.VITE_BACKEND_URL as string | undefined) ?? 'http://127.0.0.1:8000';
+  const baseUrl = (import.meta.env.VITE_BACKEND_URL as string | undefined)?.trim();
+  if (!baseUrl) {
+    return {
+      ok: false,
+      status: 503,
+      body: 'VITE_BACKEND_URL is not configured. Set it to your deployed FastAPI backend URL in Vercel.',
+      urlTried: '<VITE_BACKEND_URL not set>',
+    };
+  }
   const trimmed = baseUrl.replace(/\/+$/g, '');
   const urlTried = `${trimmed}/predict`;
 

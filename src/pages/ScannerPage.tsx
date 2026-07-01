@@ -241,6 +241,16 @@ export default function ScannerPage({ onNavigate }: Props) {
             return;
           }
 
+          const statusPart = typeof debug.status === 'number' ? `status=${debug.status}` : 'status=unknown';
+          const urlPart = debug.urlTried ? `url=${debug.urlTried}` : 'url=unknown';
+          const bodyPart = debug.body ? `body=${debug.body.slice(0, 300)}` : 'body=<empty>';
+          const joined = [statusPart, urlPart, bodyPart].filter(Boolean).join(' | ');
+
+          if (debug.status === 503 && debug.body?.includes('VITE_BACKEND_URL is not configured')) {
+            setError('Backend configuration is missing in production. Set VITE_BACKEND_URL to your deployed FastAPI backend in Vercel, then redeploy.');
+            return;
+          }
+
           // Backend not reachable or invalid response -> fallback
           const fallback = await predictDiseaseDevFallback(selectedImage, {
             soil_resistance: soilResistance,
@@ -249,15 +259,7 @@ export default function ScannerPage({ onNavigate }: Props) {
             language,
           });
 
-
-
-
           setResult(fallback);
-
-          const statusPart = typeof debug.status === 'number' ? `status=${debug.status}` : 'status=unknown';
-          const urlPart = debug.urlTried ? `url=${debug.urlTried}` : 'url=unknown';
-          const bodyPart = debug.body ? `body=${debug.body.slice(0, 300)}` : 'body=<empty>';
-          const joined = [statusPart, urlPart, bodyPart].filter(Boolean).join(' | ');
 
           setError(
             `Backend returned an error/unreachable -> using dev fallback. ${joined}`

@@ -38,11 +38,14 @@ export interface PredictResponse {
   };
 }
 
-const backendBaseUrl = (import.meta.env.VITE_BACKEND_URL as string | undefined) ?? 'http://127.0.0.1:8000';
+const backendBaseUrl = (import.meta.env.VITE_BACKEND_URL as string | undefined)?.trim();
 
 function getBackendBaseUrl() {
-  // Always resolve to a usable URL for debug.
-  return backendBaseUrl.replace(/\/+$/g, '');
+  const url = backendBaseUrl?.replace(/\/+$/g, '');
+  if (!url) {
+    throw new Error('VITE_BACKEND_URL is not set. Configure your deployed FastAPI backend URL in Vercel.');
+  }
+  return url;
 }
 
 export async function predictDisease(image: File, payload?: PredictRequest): Promise<PredictResponse> {
