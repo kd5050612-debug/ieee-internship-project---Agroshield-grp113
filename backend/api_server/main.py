@@ -22,15 +22,11 @@ from pathlib import Path
 
 import importlib.util
 
-# Explicitly pinpoint Render's absolute workspace path
-RENDER_SRC = Path("/opt/render/project/src")
-LOCAL_SRC = Path(__file__).resolve().parent.parent.parent
+# Use main.py's location to step out to the absolute root of the project
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Choose whichever one actually exists
-BASE_DIR = RENDER_SRC if RENDER_SRC.exists() else LOCAL_SRC
-WEIGHTS_DIR = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
-
-# Target the exact machine learning models file path directly
+# Target the dataset directory directly under the root
+WEIGHTS_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
 ML_MODELS_FILE = WEIGHTS_DIR / "models.py"
 
 if not ML_MODELS_FILE.exists():
@@ -50,7 +46,6 @@ AgroShieldHybridModel = getattr(
 
 if AgroShieldHybridModel is None:
     raise ImportError("Could not find AgroShieldHybridModel inside the ML pipeline models.py")
-
 
 # Now import the class cleanly from the file name
 from models import AgroShieldHybridModel
