@@ -20,20 +20,23 @@ from torchvision import transforms
 import sys
 from pathlib import Path
 
-# Step out to the project root directory
+# Absolute base directory fallback
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Target the exact ML pipeline folder path
-ML_PIPELINE_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
+# Hardcoded text fallback combinations to bypass slash issues entirely
+PATH_STR_A = str(BASE_DIR) + "/dataset/plantvillage/ml_pipeline"
+PATH_STR_B = "/opt/render/project/src/dataset/plantvillage/ml_pipeline"
 
-# Inject it into Python's search paths
-if str(ML_PIPELINE_DIR) not in sys.path:
-    sys.path.insert(0, str(ML_PIPELINE_DIR))
+# Inject the paths into Python's environment tracking directly
+if PATH_STR_A not in sys.path:
+    sys.path.insert(0, PATH_STR_A)
+if PATH_STR_B not in sys.path:
+    sys.path.insert(0, PATH_STR_B)
 
-# Define the WEIGHTS_DIR variable for your weight loading logic downstream
-WEIGHTS_DIR = ML_PIPELINE_DIR
+# Set the weight directory dynamically for the code lower down the file
+WEIGHTS_DIR = Path(PATH_STR_B) if Path(PATH_STR_B).exists() else Path(PATH_STR_A)
 
-# Clean, explicit import from the newly renamed file!
+# Clean, explicit import from your renamed ml_models.py file
 from ml_models import AgroShieldHybridModel
 
 # ---------------------------------------------------------------------------
