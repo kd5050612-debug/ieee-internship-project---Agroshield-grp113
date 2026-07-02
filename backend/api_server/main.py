@@ -21,27 +21,69 @@ from torchvision import transforms
 # ---------------------------------------------------------------------------
 # Robust Path & Model Architecture Import
 # ---------------------------------------------------------------------------
-# Step out to the project root directory
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# Resolve the ML pipeline directory.
+#
+# When deployed with rootDirectory: backend/api_server, Railway copies only
+# that subdirectory into /app, so __file__ == /app/main.py and going up 3
+# levels lands at /, not the repo root.  We therefore try several candidate
+# locations in order and use whichever one actually exists on disk.
+_THIS_FILE = Path(__file__).resolve()
 
-# ML Pipeline Directory for weights and assets
-ML_PIPELINE_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
+_CANDIDATE_PIPELINE_DIRS: list[Path] = [
+    # 1. Repo-root layout: file is 3 levels deep (repo/backend/api_server/main.py)
+    _THIS_FILE.parent.parent.parent / "dataset" / "plantvillage" / "ml_pipeline",
+    # 2. rootDirectory deployment: repo root is the parent of /app
+    _THIS_FILE.parent.parent / "dataset" / "plantvillage" / "ml_pipeline",
+    # 3. Weights bundled alongside main.py (e.g. copied into the service dir)
+    _THIS_FILE.parent / "ml_pipeline",
+    # 4. CWD-relative (useful when the process is started from the repo root)
+    Path.cwd() / "dataset" / "plantvillage" / "ml_pipeline",
+]
+
+ML_PIPELINE_DIR: Path = _CANDIDATE_PIPELINE_DIRS[0]  # default; overridden below
+for _candidate in _CANDIDATE_PIPELINE_DIRS:
+    if _candidate.exists():
+        ML_PIPELINE_DIR = _candidate
+        break
+
 WEIGHTS_DIR = ML_PIPELINE_DIR
 
-# Import directly from the local directory (backend/api_server/)
+# ---------------------------------------------------------------------------
+# Import AgroShieldHybridModel — never crash the process if it is missing.
+# The /predict endpoint already handles model is None gracefully.
+# ---------------------------------------------------------------------------
+_MODEL_CLASS_AVAILABLE: bool = False
+
 try:
-    from ml_models import AgroShieldHybridModel
+    from ml_models import AgroShieldHybridModel  # type: ignore[import]
+    _MODEL_CLASS_AVAILABLE = True
 except ImportError:
-    # Fallback search inside the pipeline directory if paths shift
+    # Fallback: look inside the resolved pipeline directory
     if str(ML_PIPELINE_DIR) not in sys.path:
         sys.path.insert(0, str(ML_PIPELINE_DIR))
     try:
-        from model import AgroShieldHybridModel
-    except ImportError as e:
-        raise ImportError(
-            f"Could not locate AgroShieldHybridModel anywhere.\n"
-            f"Checked local api_server and pipeline dir: {ML_PIPELINE_DIR}"
-        ) from e
+        from model import AgroShieldHybridModel  # type: ignore[import]
+        _MODEL_CLASS_AVAILABLE = True
+    except ImportError:
+        print(
+            "[agroshield] WARNING: Could not import AgroShieldHybridModel from "
+            f"local api_server or pipeline dir ({ML_PIPELINE_DIR}). "
+            "Model inference will be disabled — the app will still start."
+        )
+
+        # Stub so that the rest of the module can reference the name safely.
+        # Instantiating it will raise RuntimeError, but we guard every call
+        # site with `if model is not None`.
+        import torch.nn as _nn  # noqa: E402
+
+        class AgroShieldHybridModel(_nn.Module):  # type: ignore[no-redef]
+            """Placeholder used when the real model class cannot be imported."""
+
+            def __init__(self, num_classes: int = 38) -> None:
+                raise RuntimeError(
+                    "AgroShieldHybridModel is not available in this deployment. "
+                    "Ensure the ml_pipeline directory is accessible."
+                )
         
 # ---------------------------------------------------------------------------
 # Class labels
@@ -172,17 +214,26 @@ for name in ("best_model.pth", "agroshield_hybrid.pth", "best.pth"):
         weights_path = p
         break
 
-if weights_path is None:
+if weights_path is None and WEIGHTS_DIR.exists():
     for p in sorted(WEIGHTS_DIR.rglob("*.pth")):
         if p.is_file():
             weights_path = p
             break
 
-if weights_path is not None:
-    model = AgroShieldHybridModel(num_classes=NUM_CLASSES).to(device)
-    model.load_state_dict(torch.load(str(weights_path), map_location=device))
-    model.eval()
-    print(f"[agroshield] Loaded weights from: {weights_path}")
+if weights_path is not None and _MODEL_CLASS_AVAILABLE:
+    try:
+        model = AgroShieldHybridModel(num_classes=NUM_CLASSES).to(device)
+        model.load_state_dict(torch.load(str(weights_path), map_location=device))
+        model.eval()
+        print(f"[agroshield] Loaded weights from: {weights_path}")
+    except Exception as _load_err:
+        print(f"[agroshield] Failed to load model weights: {_load_err}")
+        model = None
+elif weights_path is not None and not _MODEL_CLASS_AVAILABLE:
+    print(
+        "[agroshield] Weights file found but model class is unavailable — "
+        "model inference disabled."
+    )
 else:
     print(
         "[agroshield] No .pth weights found — model inference disabled. "
