@@ -19,39 +19,30 @@ from PIL import Image, ImageOps
 from torchvision import transforms
 
 # ---------------------------------------------------------------------------
-# Dynamic Path Configuration (Prevents loops & supports renamed ml_models.py)
+# Robust Path & Model Architecture Import
 # ---------------------------------------------------------------------------
+# Step out to the project root directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-OPTION_1 = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
-OPTION_2 = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
-
-if OPTION_2.exists():
-    ML_PIPELINE_DIR = OPTION_2
-elif OPTION_1.exists():
-    ML_PIPELINE_DIR = OPTION_1
-else:
-    RENDER_FALLBACK = Path("/opt/render/project/src/backend/dataset/plantvillage/ml_pipeline")
-    ML_PIPELINE_DIR = RENDER_FALLBACK if RENDER_FALLBACK.exists() else OPTION_2
-
-if str(ML_PIPELINE_DIR) not in sys.path:
-    sys.path.insert(0, str(ML_PIPELINE_DIR))
-
+# ML Pipeline Directory for weights and assets
+ML_PIPELINE_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
 WEIGHTS_DIR = ML_PIPELINE_DIR
 
-# Robust import: tries both named files automatically
+# Import directly from the local directory (backend/api_server/)
 try:
     from ml_models import AgroShieldHybridModel
 except ImportError:
+    # Fallback search inside the pipeline directory if paths shift
+    if str(ML_PIPELINE_DIR) not in sys.path:
+        sys.path.insert(0, str(ML_PIPELINE_DIR))
     try:
-        from models import AgroShieldHybridModel
+        from model import AgroShieldHybridModel
     except ImportError as e:
         raise ImportError(
-            f"Could not import AgroShieldHybridModel.\n"
-            f"Looked inside directory: {ML_PIPELINE_DIR}\n"
-            f"Available files in that directory: {[f.name for f in ML_PIPELINE_DIR.iterdir() if ML_PIPELINE_DIR.exists()]}"
+            f"Could not locate AgroShieldHybridModel anywhere.\n"
+            f"Checked local api_server and pipeline dir: {ML_PIPELINE_DIR}"
         ) from e
-
+        
 # ---------------------------------------------------------------------------
 # Class labels
 # ---------------------------------------------------------------------------
