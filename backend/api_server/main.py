@@ -26,7 +26,10 @@ LOCAL_SRC = Path(__file__).resolve().parent.parent.parent
 
 # Choose whichever one actually exists
 BASE_DIR = RENDER_SRC if RENDER_SRC.exists() else LOCAL_SRC
-MODEL_SRC_DIR = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
+
+# 1. Define the missing WEIGHTS_DIR variable so lines 87+ don't crash
+WEIGHTS_DIR = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
+MODEL_SRC_DIR = WEIGHTS_DIR
 
 # Inject the model path directly into Python's search paths
 if str(MODEL_SRC_DIR) not in sys.path:
@@ -34,7 +37,6 @@ if str(MODEL_SRC_DIR) not in sys.path:
 
 # Now import the class cleanly from the file name
 from models import AgroShieldHybridModel
-
 # ---------------------------------------------------------------------------
 # Class labels
 # ---------------------------------------------------------------------------
