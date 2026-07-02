@@ -33,7 +33,7 @@ if str(MODEL_SRC_DIR) not in sys.path:
     sys.path.insert(0, str(MODEL_SRC_DIR))
 
 # Now import the class cleanly from the file name
-from model imports AgroShieldHybridModel
+from models import AgroShieldHybridModel
 
 # ---------------------------------------------------------------------------
 # Class labels
