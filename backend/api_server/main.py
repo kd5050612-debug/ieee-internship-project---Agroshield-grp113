@@ -3,8 +3,8 @@ from __future__ import annotations
 import base64
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import traceback
+import json
 from io import BytesIO
 from pathlib import Path
 from typing import Literal, Optional
@@ -17,39 +17,44 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from PIL import Image, ImageOps
 from torchvision import transforms
-import sys
-from pathlib import Path
 
-# Absolute base directory fallback
+# ---------------------------------------------------------------------------
+# Dynamic Path Configuration (Prevents loops & supports renamed ml_models.py)
+# ---------------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Hardcoded text fallback combinations to bypass slash issues entirely
-PATH_STR_A = str(BASE_DIR) + "/dataset/plantvillage/ml_pipeline"
-PATH_STR_B = "/opt/render/project/src/dataset/plantvillage/ml_pipeline"
+OPTION_1 = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
+OPTION_2 = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
 
-# Inject the paths into Python's environment tracking directly
-if PATH_STR_A not in sys.path:
-    sys.path.insert(0, PATH_STR_A)
-if PATH_STR_B not in sys.path:
-    sys.path.insert(0, PATH_STR_B)
+if OPTION_2.exists():
+    ML_PIPELINE_DIR = OPTION_2
+elif OPTION_1.exists():
+    ML_PIPELINE_DIR = OPTION_1
+else:
+    RENDER_FALLBACK = Path("/opt/render/project/src/backend/dataset/plantvillage/ml_pipeline")
+    ML_PIPELINE_DIR = RENDER_FALLBACK if RENDER_FALLBACK.exists() else OPTION_2
 
-# Set the weight directory dynamically for the code lower down the file
-WEIGHTS_DIR = Path(PATH_STR_B) if Path(PATH_STR_B).exists() else Path(PATH_STR_A)
+if str(ML_PIPELINE_DIR) not in sys.path:
+    sys.path.insert(0, str(ML_PIPELINE_DIR))
 
-# Clean, explicit import from your renamed ml_models.py file
-from ml_models import AgroShieldHybridModel
+WEIGHTS_DIR = ML_PIPELINE_DIR
+
+# Robust import: tries both named files automatically
+try:
+    from ml_models import AgroShieldHybridModel
+except ImportError:
+    try:
+        from models import AgroShieldHybridModel
+    except ImportError as e:
+        raise ImportError(
+            f"Could not import AgroShieldHybridModel.\n"
+            f"Looked inside directory: {ML_PIPELINE_DIR}\n"
+            f"Available files in that directory: {[f.name for f in ML_PIPELINE_DIR.iterdir() if ML_PIPELINE_DIR.exists()]}"
+        ) from e
 
 # ---------------------------------------------------------------------------
 # Class labels
 # ---------------------------------------------------------------------------
-# IMPORTANT:
-# Your checkpoint was trained with a specific label index ordering (usually from
-# torchvision.datasets.ImageFolder(class folders sorted lexicographically)).
-# If we map output indices to the wrong CLASS_LABELS order, the UI will show
-# incorrect disease names.
-
-import json
-
 DEFAULT_CLASS_LABELS: list[str] = [
     "Apple___Apple_scab",
     "Apple___Black_rot",
@@ -252,7 +257,6 @@ class GradCAM:
 # ---------------------------------------------------------------------------
 # Phase / risk helpers
 # ---------------------------------------------------------------------------
-
 def _risk_from_env(
     humidity: Optional[float],
     soil_resistance: Optional[float],
@@ -303,7 +307,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173", 
         "http://127.0.0.1:5173",
-        "https://ieee-internship-project-agroshield-rust.vercel.app"  # <-- Added your exact frontend URL
+        "https://ieee-internship-project-agroshield-rust.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -429,4 +433,3 @@ def predict(
         "explainable_ai": {"heatmap_base64": heatmap_base64, "summary": "Grad-CAM heatmap highlighting regions that influenced the prediction."},
         "roadmap": {"risk_level": risk, "phases": _phases_for_disease(disease_name)},
     }
-
