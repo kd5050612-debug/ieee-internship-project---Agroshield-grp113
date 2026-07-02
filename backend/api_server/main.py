@@ -20,20 +20,37 @@ from torchvision import transforms
 import sys
 from pathlib import Path
 
+import importlib.util
+
 # Explicitly pinpoint Render's absolute workspace path
 RENDER_SRC = Path("/opt/render/project/src")
 LOCAL_SRC = Path(__file__).resolve().parent.parent.parent
 
 # Choose whichever one actually exists
 BASE_DIR = RENDER_SRC if RENDER_SRC.exists() else LOCAL_SRC
-
-# 1. Define the missing WEIGHTS_DIR variable so lines 87+ don't crash
 WEIGHTS_DIR = BASE_DIR / "backend" / "dataset" / "plantvillage" / "ml_pipeline"
-MODEL_SRC_DIR = WEIGHTS_DIR
 
-# Inject the model path directly into Python's search paths
-if str(MODEL_SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(MODEL_SRC_DIR))
+# Target the exact machine learning models file path directly
+ML_MODELS_FILE = WEIGHTS_DIR / "models.py"
+
+if not ML_MODELS_FILE.exists():
+    raise FileNotFoundError(f"Missing ML models file at: {ML_MODELS_FILE}")
+
+# Force Python to load this specific file as a unique module name
+spec = importlib.util.spec_from_file_location("ml_pipeline_models", ML_MODELS_FILE)
+ml_pipeline_models = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(ml_pipeline_models)
+
+# Extract the class securely (handles both capital and lowercase 's')
+AgroShieldHybridModel = getattr(
+    ml_pipeline_models, 
+    "AgroShieldHybridModel", 
+    getattr(ml_pipeline_models, "AgroshieldHybridModel", None)
+)
+
+if AgroShieldHybridModel is None:
+    raise ImportError("Could not find AgroShieldHybridModel inside the ML pipeline models.py")
+
 
 # Now import the class cleanly from the file name
 from models import AgroShieldHybridModel
