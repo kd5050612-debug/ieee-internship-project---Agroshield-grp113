@@ -20,35 +20,22 @@ from torchvision import transforms
 import sys
 from pathlib import Path
 
-import importlib.util
-
-# Use main.py's location to step out to the absolute root of the project
+# Step out to the project root directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Target the dataset directory directly under the root
-WEIGHTS_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
-ML_MODELS_FILE = WEIGHTS_DIR / "models.py"
+# Target the exact ML pipeline folder path
+ML_PIPELINE_DIR = BASE_DIR / "dataset" / "plantvillage" / "ml_pipeline"
 
-if not ML_MODELS_FILE.exists():
-    raise FileNotFoundError(f"Missing ML models file at: {ML_MODELS_FILE}")
+# Inject it into Python's search paths
+if str(ML_PIPELINE_DIR) not in sys.path:
+    sys.path.insert(0, str(ML_PIPELINE_DIR))
 
-# Force Python to load this specific file as a unique module name
-spec = importlib.util.spec_from_file_location("ml_pipeline_models", ML_MODELS_FILE)
-ml_pipeline_models = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(ml_pipeline_models)
+# Define the WEIGHTS_DIR variable for your weight loading logic downstream
+WEIGHTS_DIR = ML_PIPELINE_DIR
 
-# Extract the class securely (handles both capital and lowercase 's')
-AgroShieldHybridModel = getattr(
-    ml_pipeline_models, 
-    "AgroShieldHybridModel", 
-    getattr(ml_pipeline_models, "AgroshieldHybridModel", None)
-)
+# Clean, explicit import from the newly renamed file!
+from ml_models import AgroShieldHybridModel
 
-if AgroShieldHybridModel is None:
-    raise ImportError("Could not find AgroShieldHybridModel inside the ML pipeline models.py")
-
-# Now import the class cleanly from the file name
-from models import AgroShieldHybridModel
 # ---------------------------------------------------------------------------
 # Class labels
 # ---------------------------------------------------------------------------
